@@ -5,14 +5,28 @@ nav {
   & ul {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   & ul li {
     padding: 10px;
+    color: white;
+    list-style: none;
   }
 
   & ul li a {
     color: white;
     text-decoration: none;
+  }
+
+  & ul li img {
+    max-width: 25px;
+    margin-right: 10px;
+    border-radius: 13px;
+  }
+
+  #user {
+    display: flex;
+    align-items: center;
   }
 }

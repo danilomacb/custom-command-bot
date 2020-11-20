@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useContext } from "react";
 import queryString from "query-string";
+
+import { UserContext } from "../Context/UserContext";
 
 function Home({ location }) {
   const [token, setToken] = useState(null);
   const [tokenType, setTokenType] = useState(null);
-  const [user, setUser] = useState(null);
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     function getLocalStorageToken() {
@@ -33,7 +34,7 @@ function Home({ location }) {
         body: JSON.stringify({ token, tokenType }),
       })
         .then((res) => res.json())
-        .then((user) => setUser(user))
+        .then((user) => userContext.setUser(user))
         .catch((err) => console.error("Error on login\n", err));
     }
   }, [token, tokenType]);
@@ -48,15 +49,6 @@ function Home({ location }) {
       setTokenType(parsedHash.token_type);
     }
   }, [location.hash]);
-
-  if (user) {
-    return (
-      <>
-        <h1>{user.username}</h1>
-        <img src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} alt="user" />
-      </>
-    );
-  }
 
   return <h1>Hello World</h1>;
 }
