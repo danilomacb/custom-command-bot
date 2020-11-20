@@ -6,25 +6,26 @@ import { UserContext } from "../Context/UserContext";
 function Home({ location }) {
   const [token, setToken] = useState(null);
   const [tokenType, setTokenType] = useState(null);
-  const userContext = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    function getLocalStorageToken() {
-      const localStorageToken = localStorage.getItem(token);
-      const localStorageTokenType = localStorage.getItem(tokenType);
-
-      if (localStorageToken && localStorageTokenType) {
-        setToken(localStorageToken);
-        setTokenType(localStorageTokenType);
-      }
+    if (localStorage.token && localStorage.tokenType) {
+      setToken(localStorage.token);
+      setTokenType(localStorage.tokenType);
     }
-
-    window.addEventListener("storage", getLocalStorageToken);
-
-    return () => {
-      window.removeEventListener("storage", getLocalStorageToken);
-    };
   }, []);
+
+  useEffect(() => {
+    const parsedHash = queryString.parse(location.hash);
+
+    if (parsedHash.access_token && parsedHash.token_type) {
+      localStorage.setItem("token", parsedHash.access_token);
+      localStorage.setItem("tokenType", parsedHash.token_type);
+      
+      setToken(parsedHash.access_token);
+      setTokenType(parsedHash.token_type);
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     if (token && tokenType) {
@@ -34,23 +35,12 @@ function Home({ location }) {
         body: JSON.stringify({ token, tokenType }),
       })
         .then((res) => res.json())
-        .then((user) => userContext.setUser(user))
+        .then((userData) => setUser(userData))
         .catch((err) => console.error("Error on login\n", err));
     }
   }, [token, tokenType]);
 
-  useEffect(() => {
-    const parsedHash = queryString.parse(location.hash);
-
-    if (parsedHash.access_token && parsedHash.token_type) {
-      localStorage.setItem("token", parsedHash.access_token);
-      localStorage.setItem("tokenType", parsedHash.token_type);
-      setToken(parsedHash.access_token);
-      setTokenType(parsedHash.token_type);
-    }
-  }, [location.hash]);
-
-  return <h1>Hello World</h1>;
+  return <h1>Home Page</h1>;
 }
 
 export default Home;
