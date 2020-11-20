@@ -8,6 +8,11 @@ nav {
     align-items: center;
   }
 
+  #right {
+    display: flex;
+    align-items: center;
+  }
+
   & ul li {
     padding: 10px;
     color: white;
