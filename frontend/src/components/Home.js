@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import queryString from "query-string";
 
 import { UserContext } from "../Context/UserContext";
+import history from "../history";
 
 function Home({ location }) {
   const [token, setToken] = useState(null);
@@ -21,9 +22,11 @@ function Home({ location }) {
     if (parsedHash.access_token && parsedHash.token_type) {
       localStorage.setItem("token", parsedHash.access_token);
       localStorage.setItem("tokenType", parsedHash.token_type);
-      
+
       setToken(parsedHash.access_token);
       setTokenType(parsedHash.token_type);
+
+      history.push("/");
     }
   }, [location.hash]);
 
