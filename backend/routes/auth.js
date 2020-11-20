@@ -4,13 +4,13 @@ const axios = require("axios");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { parsedHash } = req.body;
+  const { token, tokenType } = req.body;
 
   let user;
   try {
     user = await axios.get("https://discord.com/api/users/@me", {
       headers: {
-        authorization: `${parsedHash.token_type} ${parsedHash.access_token}`,
+        authorization: `${tokenType} ${token}`,
       },
     });
   } catch (err) {
