@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const auth = require("./routes/auth");
+const discordServer = require("./routes/discordServer");
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -18,6 +19,7 @@ mongoose
     app.use(express.json());
 
     app.use("/login", auth);
+    app.use("/discord-server", discordServer);
 
     app.listen(process.env.PORT, () => {
       console.log("Server running on port: ", process.env.PORT);
