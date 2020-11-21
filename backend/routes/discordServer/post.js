@@ -2,7 +2,11 @@ const DiscordServer = require("../../models/DiscordServer");
 const errorHandler = require("../util/errorHandler");
 
 async function post(req, res) {
-  const newDiscordServer = new DiscordServer(req.body);
+  const { name, discordServerId, discordUserId } = req.body;
+
+  const newDiscordServer = new DiscordServer({ name, discordServerId });
+
+  newDiscordServer.superAdms.push({ discordUserId });
 
   try {
     await newDiscordServer.save();

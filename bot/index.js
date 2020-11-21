@@ -16,6 +16,7 @@ client.on("guildCreate", async (guild) => {
     await axios.post(process.env.BACKEND_LINK_DEV + "/discord-server/new", {
       name: guild.name,
       discordServerId: guild.id,
+      discordUserId: guild.ownerID,
     });
 
     console.log("Discord server added");
