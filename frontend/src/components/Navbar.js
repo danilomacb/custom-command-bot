@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/navbar.scss";
 import { UserContext } from "../Context/UserContext";
+import LoginButton from "./LoginButton";
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
@@ -40,9 +41,7 @@ function Navbar() {
             </>
           ) : (
             <li>
-              <a href="https://discord.com/api/oauth2/authorize?client_id=778216582329270302&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=token&scope=identify">
-                <button>Login</button>
-              </a>
+              <LoginButton />
             </li>
           )}
         </div>
