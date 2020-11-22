@@ -6,7 +6,7 @@ async function post(req, res) {
 
   const newDiscordServer = new DiscordServer({ name, discordServerId });
 
-  newDiscordServer.superAdms.push({ discordUser: { id: discordOwnerId } });
+  newDiscordServer.superAdms.push({ id: discordOwnerId });
 
   try {
     await newDiscordServer.save();
