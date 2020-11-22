@@ -13,7 +13,7 @@ client.on("ready", () => {
 
 client.on("guildCreate", async (guild) => {
   try {
-    await axios.post(process.env.BACKEND_LINK_DEV + "/discord-server/new", {
+    await axios.post(process.env.BACKEND_LINK_DEV + "/discord-server/add", {
       name: guild.name,
       discordServerId: guild.id,
       discordUserId: guild.ownerID,
@@ -24,6 +24,16 @@ client.on("guildCreate", async (guild) => {
   } catch (err) {
     console.error("Error on add discord server: ", err);
     return;
+  }
+});
+
+client.on("guildDelete", async (guild) => {
+  try {
+    await axios.delete(process.env.BACKEND_LINK_DEV + "/discord-server/" + guild.id + "/remove");
+
+    return console.log("Discord server deleted");
+  } catch (err) {
+    return console.error("Error on delete discord server: ", err);
   }
 });
 

@@ -1,9 +1,11 @@
 const express = require("express");
 
-const post = require("./post");
+const add = require("./add");
+const remove = require("./remove");
 
 const router = express.Router();
 
-router.post("/new", post);
+router.post("/add", add);
+router.delete("/:discordServerId/remove", remove);
 
 module.exports = router;
