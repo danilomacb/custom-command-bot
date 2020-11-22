@@ -3,7 +3,15 @@ const mongoose = require("mongoose");
 const DiscordServerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   discordServerId: { type: String, required: true },
-  superAdms: [{ discordUserId: { type: String, required: true } }],
+  superAdms: [
+    {
+      discordUser: {
+        id: { type: String, required: true },
+        username: { type: String, required: false, default: null },
+        discriminator: { type: String, required: false, default: null },
+      },
+    },
+  ],
 });
 
-module.exports = mongoose.model("DiscordServer", DiscordServerSchema);
+module.exports = mongoose.model("discord-servers", DiscordServerSchema);
