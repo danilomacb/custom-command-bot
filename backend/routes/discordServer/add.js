@@ -22,7 +22,7 @@ async function post(req, res) {
     errorHandler(
       res,
       500,
-      "Error on create new discord server, fail to save",
+      `Error on create new discord server, fail to save the server: ${name}, with id: ${discordServerId} and owner id: ${discordOwnerId}`,
       "Error on create new discord server",
       err
     );

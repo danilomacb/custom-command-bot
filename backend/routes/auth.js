@@ -16,7 +16,14 @@ router.post("/", async (req, res) => {
       },
     });
   } catch (err) {
-    errorHandler(res, 500, "Error on auth, fail to get user data", "Error on login", err);
+    errorHandler(
+      res,
+      500,
+      `Error on auth token: ${tokenType} ${token}, fail to get user data`,
+      "Error on login",
+      err
+    );
+    return;
   }
 
   res.status(200).json(user.data);
