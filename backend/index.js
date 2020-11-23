@@ -22,7 +22,13 @@ mongoose
     app.use("/discord-server", discordServer);
 
     app.listen(process.env.PORT, () => {
-      console.log(`\n\tBackend running on port: ${process.env.PORT}\n`);
+      console.log(`
+       ___________________
+      |                   |
+      |  Backend running  |
+      |___________________|
+
+      `);
     });
   })
   .catch((err) => {
