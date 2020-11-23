@@ -1,8 +1,13 @@
 const DiscordServer = require("../../models/DiscordServer");
 const errorHandler = require("../util/errorHandler");
+const checkBody = require("../util/checkBody");
 
 async function post(req, res) {
   const { name, discordServerId, discordOwnerId } = req.body;
+
+  if (!checkBody(res, name, "name")) return;
+  if (!checkBody(res, discordServerId, "discordServerId")) return;
+  if (!checkBody(res, discordOwnerId, "discordOwnerId")) return;
 
   const newDiscordServer = new DiscordServer({ name, discordServerId });
 
@@ -11,7 +16,7 @@ async function post(req, res) {
   try {
     await newDiscordServer.save();
 
-    res.status(201).json({ message: "New Discord Server registered" });
+    res.status(200).json({ message: "New Discord Server registered" });
     return;
   } catch (err) {
     errorHandler(
