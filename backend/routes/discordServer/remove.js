@@ -11,8 +11,8 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      "Error on delete discord server",
       "Error on delete discord server, fail to find discord server",
+      "Error on delete discord server",
       err
     );
     return;
@@ -24,8 +24,8 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      "Error on delete discord server",
       "Error on delete discord server, fail to delete on database",
+      "Error on delete discord server",
       err
     );
     return;
