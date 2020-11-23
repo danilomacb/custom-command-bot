@@ -1,6 +1,8 @@
 const express = require("express");
 const axios = require("axios");
 
+const errorHandler = require("./util/errorHandler");
+
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -14,8 +16,7 @@ router.post("/", async (req, res) => {
       },
     });
   } catch (err) {
-    console.error("Error on auth, fail to get user data\n", err);
-    res.status(500).json({ message: "Error on login" });
+    errorHandler(res, 500, "Error on auth, fail to get user data", "Error on login", err);
   }
 
   res.status(200).json(user.data);
