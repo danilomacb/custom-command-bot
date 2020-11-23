@@ -63,10 +63,10 @@ client.on("guildDelete", async (guild) => {
 });
 
 client.on("message", (message) => {
-  if (!checkValues(message.content, "message content")) return;
-  if (!checkValues(message.channel, "message channel")) return;
-
   if (message.content === prefix + "ping") {
+    if (!checkValues(message.content, "message content")) return;
+    if (!checkValues(message.channel, "message channel")) return;
+
     message.channel.send("pong");
   }
 });
