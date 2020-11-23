@@ -1,5 +1,5 @@
 function errorHandler(res, status, consoleMsg, errorMsg, err) {
-  console.error(consoleMsg);
+  console.error(`\n\t${consoleMsg}\n`);
 
   if (err) console.error(err);
 

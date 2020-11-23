@@ -22,7 +22,10 @@ mongoose
     app.use("/discord-server", discordServer);
 
     app.listen(process.env.PORT, () => {
-      console.log("Server running on port: ", process.env.PORT);
+      console.log(`\n\tBackend running on port: ${process.env.PORT}\n`);
     });
   })
-  .catch((err) => console.error("Error on connect to database\n", err));
+  .catch((err) => {
+    console.error("\n\tError on connecting to a database\n");
+    console.error(err);
+  });
