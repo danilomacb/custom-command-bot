@@ -32,12 +32,11 @@ client.on("guildCreate", async (guild) => {
       discordOwnerId: guild.ownerID,
     });
 
-    console.log(`\n\tDiscord server with name: ${guild.name} and id: ${guild.id} added\n`);
+    console.log(`\n\tDiscord server with name: ${guild.name} and id: ${guild.id} added`);
     return;
   } catch (err) {
-    console.error(
-      `\n\tError on add discord server with name: ${guild.name} and id: ${guild.id} \n`
-    );
+    console.error(`\n\tError on add discord server with name: ${guild.name} and id: ${guild.id}`);
+    console.trace();
     console.error(err);
     return;
   }
@@ -51,12 +50,13 @@ client.on("guildDelete", async (guild) => {
   try {
     await axios.delete(process.env.BACKEND_LINK_DEV + "/discord-server/" + guild.id + "/remove");
 
-    console.log(`\n\tDiscord server with name: ${guild.name} and id: ${guild.id} deleted\n`);
+    console.log(`\n\tDiscord server with name: ${guild.name} and id: ${guild.id} deleted`);
     return;
   } catch (err) {
     console.error(
-      `\n\tError on delete discord server with name: ${guild.name} and id: ${guild.id}\n`
+      `\n\tError on delete discord server with name: ${guild.name} and id: ${guild.id}`
     );
+    console.trace();
     console.error(err);
     return;
   }

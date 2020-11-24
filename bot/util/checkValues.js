@@ -1,6 +1,7 @@
 function checkValues(variable, missedValue) {
   if (!variable) {
-    console.error(`Guild ${missedValue} is missing`);
+    console.error(`\n\tGuild ${missedValue} is missing`);
+    console.trace();
     return false;
   }
 
