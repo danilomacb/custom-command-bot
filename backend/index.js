@@ -32,6 +32,7 @@ mongoose
     });
   })
   .catch((err) => {
-    console.error("\n\tError on connecting to a database\n");
+    console.error("\n\tError on connecting to a database");
+    console.trace();
     console.error(err);
   });
