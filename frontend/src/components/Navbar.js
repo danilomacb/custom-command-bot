@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 import "../styles/navbar.scss";
 import { UserContext } from "../Context/UserContext";
-import LoginButton from "./LoginButton";
+import NavUser from "./NavUser";
+import NavLogin from "./NavLogin";
+import NavLogout from "./NavLogout";
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
@@ -20,28 +22,15 @@ function Navbar() {
           {user ? (
             <>
               <li id="user">
-                <img
-                  src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
-                  alt="user profile"
-                />
-                {user.username}
+                <NavUser user={user} />
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("tokenType");
-
-                    setUser(null);
-                  }}
-                >
-                  Logout
-                </button>
+                <NavLogout />
               </li>
             </>
           ) : (
             <li>
-              <LoginButton />
+              <NavLogin />
             </li>
           )}
         </div>

@@ -1,4 +1,5 @@
 const DiscordServer = require("../../models/DiscordServer");
+const successHandler = require("../util/successHandler");
 const errorHandler = require("../util/errorHandler");
 
 async function remove(req, res) {
@@ -11,8 +12,7 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      `Error on the delete discord server, fail to find discord server with id: ${req.params.discordServerId}`,
-      "Error on the delete discord server",
+      `Fail to remove discord server with id: ${req.params.discordServerId}`,
       err
     );
     return;
@@ -24,14 +24,13 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      `Error on the delete discord server, fail to delete discord server with id: ${req.params.discordServerId}`,
-      "Error on the delete discord server",
+      `Fail to remove discord server with id: ${req.params.discordServerId}`,
       err
     );
     return;
   }
 
-  res.status(200).json({ message: "Discord server removed" });
+  successHandler(res, 200, `Discord server with id: ${req.params.discordServerId} removed`);
   return;
 }
 

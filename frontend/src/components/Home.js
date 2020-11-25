@@ -38,10 +38,13 @@ function Home({ location }) {
         body: JSON.stringify({ token, tokenType }),
       })
         .then((res) => res.json())
-        .then((userData) => setUser(userData))
+        .then((jsonRes) => {
+          setUser(jsonRes.data.user);
+          console.log(jsonRes.message);
+        })
         .catch((err) => console.error("Error on login\n", err));
     }
-  }, [token, tokenType]);
+  }, [token, tokenType, setUser]);
 
   return <h1>Home Page</h1>;
 }
