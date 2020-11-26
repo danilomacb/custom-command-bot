@@ -2,13 +2,15 @@ import { Route, Router } from "react-router-dom";
 
 import history from "./history";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Router history={history}>
       <Navbar />
-      <Route path="/" component={Home} />
+      <Route exact path="/" component={Home} />
+      <Route path="/login" component={Login} />
     </Router>
   );
 }
