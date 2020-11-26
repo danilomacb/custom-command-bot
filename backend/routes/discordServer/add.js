@@ -2,12 +2,12 @@ const DiscordServer = require("../../models/DiscordServer");
 const successHandler = require("../util/successHandler");
 const errorHandler = require("../util/errorHandler");
 
-async function post(req, res) {
+async function add(req, res) {
   const { name, discordServerId, discordOwnerId } = req.body;
 
   const newDiscordServer = new DiscordServer({ name, discordServerId });
 
-  newDiscordServer.superAdms.push({ id: discordOwnerId });
+  newDiscordServer.superAdms.push({ discordUserId: discordOwnerId });
 
   try {
     await newDiscordServer.save();
@@ -29,4 +29,4 @@ async function post(req, res) {
   }
 }
 
-module.exports = post;
+module.exports = add;

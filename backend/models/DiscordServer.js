@@ -5,10 +5,13 @@ const DiscordServerSchema = new mongoose.Schema({
   discordServerId: { type: String, required: true },
   superAdms: [
     {
-      _id: false,
-      id: { type: String, required: true },
-      username: { type: String, required: false, default: null },
-      discriminator: { type: String, required: false, default: null },
+      discordUserId: { type: String, required: true },
+    },
+  ],
+  textCommands: [
+    {
+      tag: { type: String, required: true },
+      message: { type: String, required: true },
     },
   ],
 });

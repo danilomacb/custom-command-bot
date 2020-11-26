@@ -1,6 +1,6 @@
 function errorHandler(err) {
   if (err.response.data.message) {
-    console.error(err.response.data);
+    console.error(err.response.data.message);
     console.trace();
     return;
   }

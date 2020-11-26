@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const auth = require("./routes/auth");
 const discordServer = require("./routes/discordServer");
+const textCommands = require("./routes/textCommand");
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -20,6 +21,7 @@ mongoose
 
     app.use("/login", auth);
     app.use("/discord-server", discordServer);
+    app.use("/text", textCommands);
 
     app.listen(process.env.PORT, () => {
       console.log(`
