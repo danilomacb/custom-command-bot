@@ -8,7 +8,7 @@ import NavLogin from "./NavLogin";
 import NavLogout from "./NavLogout";
 
 function Navbar() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <nav>

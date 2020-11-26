@@ -1,0 +1,23 @@
+form {
+  & input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+
+  & textarea {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    height: 100px;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+
+  & button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+  }
+}
