@@ -19,7 +19,7 @@ mongoose
     app.use(cors());
     app.use(express.json());
 
-    app.use("/login", auth);
+    app.use("/auth", auth);
     app.use("/discord-server", discordServer);
     app.use("/text", textCommands);
 
