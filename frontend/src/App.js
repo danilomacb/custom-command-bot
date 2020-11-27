@@ -4,7 +4,7 @@ import history from "./history";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import AddText from "./pages/AddText";
+import DiscordServer from "./pages/DiscordServer";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
-      <Route path="/:discordServerId/add-text" component={AddText} />
+      <Route path="/:discordServerId" component={DiscordServer} />
     </Router>
   );
 }
