@@ -48,7 +48,7 @@ client.on("guildDelete", async (guild) => {
 client.on("message", (message) => {
   if (message.content === prefix + "link") {
     return message.channel.send(
-      `Use this link to manage the commands from this server:\n${process.env.FRONTEND_LINK_DEV}/${message.guild.id}`
+      `Use this link to manage the commands from this server:\n${process.env.FRONTEND_LINK_DEV}/discord-server/${message.guild.id}`
     );
   }
 });
