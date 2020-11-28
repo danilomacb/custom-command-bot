@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import queryString from "query-string";
 
 import history from "../history";
-import { UserContext } from "../Context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function Login({ location }) {
   const { setUser } = useContext(UserContext);
