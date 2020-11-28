@@ -11,8 +11,8 @@ function App() {
     <Router history={history}>
       <Navbar />
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/:discordServerId" component={DiscordServer} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/discord-server/:discordServerId" component={DiscordServer} />
     </Router>
   );
 }
