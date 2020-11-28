@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
+import "../styles/discordServer.scss";
 import history from "../history";
+import TextForm from "../components/TextForm";
 
 function DiscordServer({ match }) {
   const [access, setAccess] = useState(false);
@@ -31,19 +33,38 @@ function DiscordServer({ match }) {
           }
         })
         .catch((err) => console.error("Error on get guilds\n", err));
+    } else {
+      alert("Access denied");
+      history.push("/");
     }
   }, [match.params.discordServerId]);
+
+  const [commandType, setCommandType] = useState("text");
+
+  function changeCommandType(ct) {
+    if (commandType !== ct) {
+      setCommandType(ct);
+    }
+  }
 
   if (access && guild) {
     return (
       <>
-        <h1>Guild Name: {guild.name}</h1>
-        <h1>Guild ID: {guild.id}</h1>
+        <h1>{guild.name}</h1>
+        <div id="command-types-buttons">
+          <button onClick={() => changeCommandType("text")}>Text</button>
+          <button onClick={() => changeCommandType("image")}>Image</button>
+        </div>
+        {commandType === "text" ? (
+          <TextForm discordServerId={match.params.discordServerId} />
+        ) : (
+          <h1>ImageForm</h1>
+        )}
       </>
     );
   }
 
-  return <h1>Loading...</h1>;
+  return <h1>Loading Discord Server...</h1>;
 }
 
 export default DiscordServer;
