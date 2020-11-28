@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/navbar.scss";
 import { UserContext } from "../context/UserContext";
+import { getUser } from "../services/UserService";
 import NavUser from "./NavUser";
 import NavLogin from "./NavLogin";
 import NavLogout from "./NavLogout";
@@ -15,18 +16,11 @@ function Navbar() {
     const tokenType = localStorage.tokenType;
 
     if (!user && token && tokenType) {
-      fetch("http://localhost:3001/auth/user", {
-        method: "GET",
-        headers: { authorization: `${tokenType} ${token}` },
-      })
-        .then((res) => res.json())
-        .then((jsonRes) => {
-          setUser(jsonRes.data.user);
-          console.log(jsonRes.message);
-        })
-        .catch((err) => console.error("Error on get user\n", err));
+      getUser(tokenType, token)
+        .then((user) => setUser(user))
+        .catch((err) => console.log("Fail to get user\n", err));
     }
-  }, [setUser]);
+  }, [user, setUser]);
 
   return (
     <nav>
