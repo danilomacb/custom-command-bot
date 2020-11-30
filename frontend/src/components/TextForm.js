@@ -8,14 +8,22 @@ function TextForm({ discordServerId }) {
     e.preventDefault();
 
     try {
-      await fetch(`http://localhost:3001/text/${discordServerId}/add`, {
+      const res = await fetch(`http://localhost:3001/text/${discordServerId}/add`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${localStorage.tokenType} ${localStorage.token}`,
+        },
         body: JSON.stringify({ tag: tagInput.value, message: messageTextarea.value }),
       });
 
       tagInput.value = "";
       messageTextarea.value = "";
+
+      if (!res.ok) {
+        alert("Fail to add new text command");
+        return;
+      }
 
       alert("New text command added");
     } catch (err) {
