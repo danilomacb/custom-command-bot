@@ -1,10 +1,7 @@
-const express = require("express");
 const axios = require("axios");
 
 const successHandler = require("../util/successHandler");
 const errorHandler = require("../util/errorHandler");
-
-const router = express.Router();
 
 async function getDiscordUser(req, res) {
   try {
