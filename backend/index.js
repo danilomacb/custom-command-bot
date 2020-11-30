@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const auth = require("./routes/auth");
+const discordApi = require("./routes/discordApi");
 const discordServer = require("./routes/discordServer");
 const textCommands = require("./routes/textCommand");
 
@@ -19,7 +19,7 @@ mongoose
     app.use(cors());
     app.use(express.json());
 
-    app.use("/auth", auth);
+    app.use("/discord-api", discordApi);
     app.use("/discord-server", discordServer);
     app.use("/text", textCommands);
 

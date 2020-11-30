@@ -1,15 +1,10 @@
-const axios = require("axios");
-
+const getDiscordUserReq = require("./util/getDiscordUserReq");
 const successHandler = require("../util/successHandler");
 const errorHandler = require("../util/errorHandler");
 
 async function getDiscordUser(req, res) {
   try {
-    const user = await axios.get("https://discord.com/api/users/@me", {
-      headers: {
-        authorization: req.headers.authorization,
-      },
-    });
+    const user = await getDiscordUserReq(req.headers.authorization);
 
     successHandler(res, 200, `Get user data with token: ${req.headers.authorization}`, {
       user: user.data,

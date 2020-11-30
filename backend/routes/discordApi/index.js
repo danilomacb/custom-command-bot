@@ -5,7 +5,7 @@ const getDiscordGuilds = require("./getDiscordGuilds");
 
 const router = express.Router();
 
-router.get("/user", getDiscordUser);
-router.get("/guilds", getDiscordGuilds);
+router.get("/get-user", getDiscordUser);
+router.get("/get-guilds", getDiscordGuilds);
 
 module.exports = router;
