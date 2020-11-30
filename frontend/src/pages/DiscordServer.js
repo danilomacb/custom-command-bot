@@ -14,7 +14,7 @@ function DiscordServer({ match, location }) {
     const tokenType = localStorage.tokenType;
 
     if (token && tokenType) {
-      fetch("http://localhost:3001/auth/guilds", {
+      fetch("http://localhost:3001/discord-api/get-guilds", {
         method: "GET",
         headers: { authorization: `${tokenType} ${token}` },
       })

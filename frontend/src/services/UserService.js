@@ -1,7 +1,7 @@
 export async function getUser(tokenType, token) {
   let res;
   try {
-    res = await fetch("http://localhost:3001/auth/user", {
+    res = await fetch("http://localhost:3001/discord-api/get-user", {
       method: "GET",
       headers: { authorization: `${tokenType} ${token}` },
     });
