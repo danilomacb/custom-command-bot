@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 import "../styles/discordServer.scss";
 import history from "../history";
+import Navbar from "../components/Navbar";
 import TextForm from "../components/TextForm";
 
-function DiscordServer({ match }) {
+function DiscordServer({ match, location }) {
   const [access, setAccess] = useState(false);
   const [guild, setGuild] = useState([]);
 
@@ -50,6 +51,7 @@ function DiscordServer({ match }) {
   if (access && guild) {
     return (
       <>
+        <Navbar location={location} />
         <h1>{guild.name}</h1>
         <div id="command-types-buttons">
           <button onClick={() => changeCommandType("text")}>Text</button>
@@ -64,7 +66,12 @@ function DiscordServer({ match }) {
     );
   }
 
-  return <h1>Loading Discord Server...</h1>;
+  return (
+    <>
+      <Navbar location={location} />
+      <h1>Loading Discord Server...</h1>
+    </>
+  );
 }
 
 export default DiscordServer;
