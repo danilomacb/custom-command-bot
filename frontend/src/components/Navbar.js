@@ -1,26 +1,14 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import "../styles/navbar.scss";
 import { UserContext } from "../context/UserContext";
-import { getUser } from "../services/UserService";
 import NavUser from "./NavUser";
-import NavLogin from "./NavLogin";
+import Login from "./Login";
 import NavLogout from "./NavLogout";
 
-function Navbar() {
-  const { user, setUser } = useContext(UserContext);
-
-  useEffect(() => {
-    const token = localStorage.token;
-    const tokenType = localStorage.tokenType;
-
-    if (!user && token && tokenType) {
-      getUser(tokenType, token)
-        .then((user) => setUser(user))
-        .catch((err) => console.log("Fail to get user\n", err));
-    }
-  }, [user, setUser]);
+function Navbar({ location }) {
+  const { user } = useContext(UserContext);
 
   return (
     <nav>
@@ -42,7 +30,7 @@ function Navbar() {
             </>
           ) : (
             <li>
-              <NavLogin />
+              <Login location={location} />
             </li>
           )}
         </div>

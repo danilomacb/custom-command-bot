@@ -9,14 +9,14 @@ function Login({ location }) {
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (localStorage.token && localStorage.tokenType) {
-      history.push("/");
-      return;
-    }
+    let tokenType = localStorage.tokenType;
+    let token = localStorage.token;
 
-    const parsedHash = queryString.parse(location.hash);
-    const tokenType = parsedHash.token_type;
-    const token = parsedHash.access_token;
+    if (!tokenType && !token && location.hash) {
+      const parsedHash = queryString.parse(location.hash);
+      tokenType = parsedHash.token_type;
+      token = parsedHash.access_token;
+    }
 
     if (tokenType && token) {
       localStorage.setItem("tokenType", tokenType);
@@ -28,9 +28,13 @@ function Login({ location }) {
 
       history.push("/");
     }
-  }, [location.hash]);
+  }, [location.hash, setUser]);
 
-  return <h1>Logging...</h1>;
+  return (
+    <a href="https://discord.com/api/oauth2/authorize?client_id=777841418483662868&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=token&scope=identify%20guilds">
+      <button>Login</button>
+    </a>
+  );
 }
 
 export default Login;
