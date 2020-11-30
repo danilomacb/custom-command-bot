@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { UserContext } from "../context/UserContext";
 
-function NavLogout() {
+function Logout() {
   const { setUser } = useContext(UserContext);
 
   return (
@@ -19,4 +19,4 @@ function NavLogout() {
   );
 }
 
-export default NavLogout;
+export default Logout;

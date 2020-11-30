@@ -5,7 +5,7 @@ import "../styles/navbar.scss";
 import { UserContext } from "../context/UserContext";
 import NavUser from "./NavUser";
 import Login from "./Login";
-import NavLogout from "./NavLogout";
+import Logout from "./Logout";
 
 function Navbar({ location }) {
   const { user } = useContext(UserContext);
@@ -25,7 +25,7 @@ function Navbar({ location }) {
                 <NavUser user={user} />
               </li>
               <li>
-                <NavLogout />
+                <Logout />
               </li>
             </>
           ) : (
