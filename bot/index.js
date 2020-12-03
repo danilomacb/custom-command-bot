@@ -27,7 +27,7 @@ client.on("guildCreate", async (guild) => {
       discordOwnerId: guild.ownerID,
     });
 
-    console.log(res.data.message);
+    console.log(`\n\t${res.data.message}`);
   } catch (err) {
     errorHandler(err);
   }
@@ -39,7 +39,7 @@ client.on("guildDelete", async (guild) => {
       process.env.BACKEND_LINK_DEV + "/discord-server/" + guild.id + "/remove"
     );
 
-    console.log(res.data.message);
+    console.log(`\n\t${res.data.message}`);
   } catch (err) {
     errorHandler(err);
   }
