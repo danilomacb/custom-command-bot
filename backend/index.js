@@ -7,6 +7,7 @@ const cors = require("cors");
 const discordApi = require("./routes/discordApi");
 const discordServer = require("./routes/discordServer");
 const textCommands = require("./routes/textCommand");
+const getDate = require("./util/getDate");
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -34,7 +35,7 @@ mongoose
     });
   })
   .catch((err) => {
-    console.error("\n\tError on connecting to a database");
+    console.error(`\n\t[${getDate()}] Fail to connect to database`);
     console.trace();
     console.error(err);
   });
