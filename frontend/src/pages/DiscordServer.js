@@ -4,6 +4,7 @@ import "../styles/discordServer.scss";
 import history from "../history";
 import Navbar from "../components/Navbar";
 import TextForm from "../components/TextForm";
+import { getGuilds } from "../services/GuildService";
 
 function DiscordServer({ match, location }) {
   const [access, setAccess] = useState(false);
@@ -13,27 +14,18 @@ function DiscordServer({ match, location }) {
     const token = localStorage.token;
     const tokenType = localStorage.tokenType;
 
-    if (token && tokenType) {
-      fetch("http://localhost:3001/discord-api/get-guilds", {
-        method: "GET",
-        headers: { authorization: `${tokenType} ${token}` },
-      })
-        .then((res) => res.json())
-        .then((jsonRes) => {
-          console.log(jsonRes.message);
-          const foundedGuild = jsonRes.data.guilds.find(
-            (guild) => guild.id === match.params.discordServerId
-          );
+    if (tokenType && token) {
+      getGuilds(tokenType, token).then((guilds) => {
+        const foundedGuild = guilds.find((guild) => guild.id === match.params.discordServerId);
 
-          if (foundedGuild) {
-            setAccess(true);
-            setGuild(foundedGuild);
-          } else {
-            alert("Access denied");
-            history.push("/");
-          }
-        })
-        .catch((err) => console.error("Error on get guilds\n", err));
+        if (foundedGuild) {
+          setAccess(true);
+          setGuild(foundedGuild);
+        } else {
+          alert("Access denied");
+          history.push("/");
+        }
+      });
     } else {
       alert("Access denied");
       history.push("/");
