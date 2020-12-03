@@ -1,4 +1,5 @@
 import "../styles/form.scss";
+import { addText } from "../services/TextService";
 
 function TextForm({ discordServerId }) {
   let tagInput;
@@ -7,30 +8,10 @@ function TextForm({ discordServerId }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const res = await fetch(`http://localhost:3001/text/${discordServerId}/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `${localStorage.tokenType} ${localStorage.token}`,
-        },
-        body: JSON.stringify({ tag: tagInput.value, message: messageTextarea.value }),
-      });
+    await addText(discordServerId, tagInput.value, messageTextarea.value);
 
-      tagInput.value = "";
-      messageTextarea.value = "";
-
-      if (!res.ok) {
-        alert("Fail to add new text command");
-        return;
-      }
-
-      alert("New text command added");
-    } catch (err) {
-      alert("Fail to add new text command");
-      console.error("Fail to add new text command\n", err);
-      return;
-    }
+    tagInput.value = "";
+    messageTextarea.value = "";
   }
 
   return (
