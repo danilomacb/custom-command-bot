@@ -14,15 +14,15 @@ async function add(req, res) {
 
     successHandler(
       res,
-      200,
-      `Discord server with name: ${name} and id: ${discordServerId} registered`
+      201,
+      `New discord server registered on the database, data: {name: ${name}, discordServerId: ${discordServerId}, discordOwnerId: ${discordOwnerId}}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Fail to register discord server with name: ${name} and id: ${discordServerId}`,
+      `Fail to register a new discord server on the database, data: {name: ${name}, discordServerId: ${discordServerId}, discordOwnerId: ${discordOwnerId}}`,
       err
     );
     return;

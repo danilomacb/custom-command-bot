@@ -12,7 +12,7 @@ async function add(req, res) {
   try {
     user = await getDiscordUserReq(authorization);
   } catch (err) {
-    errorHandler(res, 500, `Fail to get user data with token: ${authorization}`, err);
+    errorHandler(res, 401, "Fail to get user data", err);
     return;
   }
 
@@ -20,16 +20,28 @@ async function add(req, res) {
   try {
     discordServer = await DiscordServer.findOne({ discordServerId });
   } catch (err) {
-    errorHandler(res, 500, `Fail to add text command: ${tag}`, err);
+    errorHandler(
+      res,
+      500,
+      `Fail to find discord server, data: {discordServerId: ${discordServerId}}`,
+      err
+    );
     return;
   }
 
-  const userFound = discordServer.superAdms.find((superAdm) => superAdm.discordUserId === user.data.id);
+  if (!discordServer) {
+    errorHandler(res, 404, `Discord server not found, data: {discordServerId: ${discordServerId}}`);
+    return;
+  }
+
+  const userFound = discordServer.superAdms.find(
+    (superAdm) => superAdm.discordUserId === user.data.id
+  );
   if (!userFound) {
     errorHandler(
       res,
       401,
-      `User with token: ${authorization} doesn't have permission to add text command in discord server with id: ${discordServerId}`
+      `The user doesn't have permission to add text command in this discord server, data: {username: ${user.data.username}, userId, ${user.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServerId}}`
     );
     return;
   }
@@ -39,10 +51,19 @@ async function add(req, res) {
   try {
     await discordServer.save();
 
-    successHandler(res, 200, `text command: ${tag} added`);
+    successHandler(
+      res,
+      201,
+      `Text command added, data: {tag: ${tag}, message: ${message}, discordServerName: ${discordServer.name}, discordServerId: ${discordServerId}}`
+    );
     return;
   } catch (err) {
-    errorHandler(res, 500, `Fail to add text command: ${tag}`, err);
+    errorHandler(
+      res,
+      500,
+      `Fail to save text command, data: {tag: ${tag}, message: ${message}, discordServerName: ${discordServer.name}, discordServerId: ${discordServerId}}`,
+      err
+    );
     return;
   }
 }

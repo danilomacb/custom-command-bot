@@ -12,7 +12,7 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      `Fail to remove discord server with id: ${req.params.discordServerId}`,
+      `Fail to find discord server, data: {id: ${req.params.discordServerId}}`,
       err
     );
     return;
@@ -24,13 +24,17 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      `Fail to remove discord server with id: ${req.params.discordServerId}`,
+      `Fail to remove discord server, data: {name: ${discordServer.name}, id: ${req.params.discordServerId}}`,
       err
     );
     return;
   }
 
-  successHandler(res, 200, `Discord server with id: ${req.params.discordServerId} removed`);
+  successHandler(
+    res,
+    200,
+    `Discord server removed, data: {name: ${discordServer.name}, id: ${req.params.discordServerId}}`
+  );
   return;
 }
 

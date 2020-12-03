@@ -8,15 +8,13 @@ async function getDiscordGuilds(req, res) {
   try {
     const guilds = await getDiscordGuildsReq(req.headers.authorization);
 
-    successHandler(res, 200, `Get discord servers from token: ${req.headers.authorization}`, {
-      guilds: guilds.data,
-    });
+    successHandler(res, 200, "Get discord guilds", { guilds: guilds.data });
     return;
   } catch (err) {
     errorHandler(
       res,
-      500,
-      `Fail to get discord servers with token: ${req.headers.authorization}`,
+      401,
+      "Fail to get discord guilds",
       err
     );
     return;

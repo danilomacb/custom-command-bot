@@ -6,12 +6,10 @@ async function getDiscordUser(req, res) {
   try {
     const user = await getDiscordUserReq(req.headers.authorization);
 
-    successHandler(res, 200, `Get user data with token: ${req.headers.authorization}`, {
-      user: user.data,
-    });
+    successHandler(res, 200, "Get discord user", { user: user.data });
     return;
   } catch (err) {
-    errorHandler(res, 500, `Fail to get user data with token: ${req.headers.authorization}`, err);
+    errorHandler(res, 401, "Fail to get discord user", err);
     return;
   }
 }
