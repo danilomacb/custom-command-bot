@@ -21,9 +21,7 @@ function Login({ location }) {
     }
 
     if (!user && tokenType && token) {
-      getUser(tokenType, token)
-        .then((user) => setUser(user))
-        .catch((err) => console.log("Fail to get user\n", err));
+      getUser(tokenType, token).then((user) => setUser(user));
     }
   }, [location.hash, setUser, user]);
 

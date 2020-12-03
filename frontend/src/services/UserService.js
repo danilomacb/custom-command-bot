@@ -5,10 +5,14 @@ export async function getUser(tokenType, token) {
       method: "GET",
       headers: { authorization: `${tokenType} ${token}` },
     });
+
+    if (!res.ok) {
+      alert("Fail to login");
+      return;
+    }
   } catch (err) {
     alert("Fail to login");
-    console.error("Error on get user\n", err);
-    console.trace();
+    console.error("Fail to get user\n", err);
     return;
   }
 
@@ -18,8 +22,7 @@ export async function getUser(tokenType, token) {
     return jsonRes.data.user;
   } catch (err) {
     alert("Fail to login");
-    console.error("Error on covert response to json\n", err);
-    console.trace();
+    console.error("Fail to covert response to json\n");
     return;
   }
 }
