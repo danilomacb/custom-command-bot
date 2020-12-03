@@ -1,6 +1,6 @@
-const getDiscordUserReq = require("./util/getDiscordUserReq");
-const successHandler = require("../util/successHandler");
-const errorHandler = require("../util/errorHandler");
+const getDiscordUserReq = require("../../util/getDiscordUserReq");
+const successHandler = require("../../util/successHandler");
+const errorHandler = require("../../util/errorHandler");
 
 async function getDiscordUser(req, res) {
   try {

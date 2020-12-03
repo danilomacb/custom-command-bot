@@ -1,7 +1,7 @@
-const getDiscordUserReq = require("../discordApi/util/getDiscordUserReq");
+const getDiscordUserReq = require("../../util/getDiscordUserReq");
 const DiscordServer = require("../../models/DiscordServer");
-const successHandler = require("../util/successHandler");
-const errorHandler = require("../util/errorHandler");
+const successHandler = require("../../util/successHandler");
+const errorHandler = require("../../util/errorHandler");
 
 async function add(req, res) {
   const { authorization } = req.headers;

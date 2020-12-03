@@ -1,6 +1,6 @@
 const DiscordServer = require("../../models/DiscordServer");
-const successHandler = require("../util/successHandler");
-const errorHandler = require("../util/errorHandler");
+const successHandler = require("../../util/successHandler");
+const errorHandler = require("../../util/errorHandler");
 
 async function remove(req, res) {
   let discordServer;

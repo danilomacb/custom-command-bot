@@ -1,8 +1,8 @@
 const axios = require("axios");
 
-const getDiscordGuildsReq = require("./util/getDiscordGuildsReq");
-const successHandler = require("../util/successHandler");
-const errorHandler = require("../util/errorHandler");
+const getDiscordGuildsReq = require("../../util/getDiscordGuildsReq");
+const successHandler = require("../../util/successHandler");
+const errorHandler = require("../../util/errorHandler");
 
 async function getDiscordGuilds(req, res) {
   try {

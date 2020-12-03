@@ -1,4 +1,4 @@
-const getDate = require("../../util/getDate");
+const getDate = require("./getDate");
 
 function errorHandler(res, status, msg, err) {
   const dateMsg = `[${getDate()}] ${msg}`
