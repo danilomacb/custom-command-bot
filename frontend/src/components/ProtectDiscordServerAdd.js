@@ -4,9 +4,9 @@ import history from "../history";
 import { UserContext } from "../context/UserContext";
 import { getDiscordServer } from "../services/DiscordServerService";
 import Navbar from "../components/Navbar";
-import DiscordServer from "../pages/DiscordServer";
+import DiscordServerAdd from "../pages/DiscordServerAdd";
 
-function ProtectDiscordServer({ location, match }) {
+function ProtectDiscordServerAdd({ location, match }) {
   const { discordServerId } = match.params;
 
   const { user } = useContext(UserContext);
@@ -31,15 +31,15 @@ function ProtectDiscordServer({ location, match }) {
   }, [tokenType, token, user, discordServerId]);
 
   if (discordServer) {
-    return <DiscordServer match={match} location={location} discordServer={discordServer} />;
+    return <DiscordServerAdd match={match} location={location} discordServer={discordServer} />;
   }
 
   return (
     <>
       <Navbar location={location} />
-      <h1>Loading Discord Server...</h1>
+      <h1>Loading Discord Server Add...</h1>
     </>
   );
 }
 
-export default ProtectDiscordServer;
+export default ProtectDiscordServerAdd;

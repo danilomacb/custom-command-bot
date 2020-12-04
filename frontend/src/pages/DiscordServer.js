@@ -1,31 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import "../styles/discordServer.scss";
+import { getDiscordServer } from "../services/DiscordServerService";
 import Navbar from "../components/Navbar";
-import TextForm from "../components/TextForm";
 
-function DiscordServer({ match, location, discordServer }) {
-  const [commandType, setCommandType] = useState("text");
+function DiscordServer({ match, location }) {
+  const { discordServerId } = match.params;
 
-  function changeCommandType(ct) {
-    if (commandType !== ct) {
-      setCommandType(ct);
-    }
+  const [discordServer, setDiscordServer] = useState(null);
+
+  useEffect(() => {
+    getDiscordServer(discordServerId).then((res) => {
+      setDiscordServer(res);
+    });
+  }, []);
+
+  if (discordServer) {
+    return (
+      <>
+        <Navbar location={location} />
+        <h1>{discordServer.name}</h1>
+        <Link to={`/discord-server/${discordServerId}/add`}>Add</Link>
+        <br />
+        {discordServer.textCommands.map((textCommand) => (
+          <>
+            <label>Tag: {textCommand.tag}</label>
+            <div>Message: {textCommand.message}</div>
+          </>
+        ))}
+      </>
+    );
   }
 
   return (
     <>
       <Navbar location={location} />
-      <h1>{discordServer.name}</h1>
-      <div id="command-types-buttons">
-        <button onClick={() => changeCommandType("text")}>Text</button>
-        <button onClick={() => changeCommandType("image")}>Image</button>
-      </div>
-      {commandType === "text" ? (
-        <TextForm discordServerId={match.params.discordServerId} />
-      ) : (
-        <h1>ImageForm</h1>
-      )}
+      <h1>Loading Discord Server...</h1>
     </>
   );
 }
