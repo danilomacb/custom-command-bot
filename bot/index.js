@@ -3,11 +3,11 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const axios = require("axios");
 
+const { prefix } = require("./config.json");
 const errorHandler = require("./util/errorHandler");
+const commands = require("./commands");
 
 const client = new Discord.Client();
-
-const prefix = "$";
 
 client.on("ready", () => {
   console.log(`
@@ -46,11 +46,16 @@ client.on("guildDelete", async (guild) => {
 });
 
 client.on("message", (message) => {
+  if (message.author.bot) return;
+  if (message.content.charAt(0) !== prefix) return;
+
   if (message.content === prefix + "link") {
     return message.channel.send(
       `Use this link to manage the commands from this server:\n${process.env.FRONTEND_LINK_DEV}/discord-server/${message.guild.id}`
     );
   }
+
+  commands(message);
 });
 
 client.login(process.env.DISCORD_TOKEN);
