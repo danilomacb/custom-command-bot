@@ -13,17 +13,14 @@ function ProtectDiscordServerAdd({ location, match }) {
 
   useEffect(() => {
     setLocation(location);
-  }, [location]);
+  }, [location, setLocation]);
 
   const { user } = useContext(UserContext);
-
-  const tokenType = localStorage.tokenType;
-  const token = localStorage.token;
-
+  
   const [discordServer, setDiscordServer] = useState(null);
 
   useEffect(() => {
-    if (tokenType && token && user) {
+    if (user) {
       getDiscordServer(discordServerId).then((res) => {
         const findSuperAdm = res.superAdms.find((superAdm) => superAdm.discordUserId === user.id);
 
@@ -33,8 +30,10 @@ function ProtectDiscordServerAdd({ location, match }) {
           history.push("/");
         }
       });
+    } else {
+      history.push("/");
     }
-  }, [tokenType, token, user, discordServerId]);
+  }, [user, discordServerId]);
 
   if (discordServer) {
     return <DiscordServerAdd match={match} discordServer={discordServer} />;
