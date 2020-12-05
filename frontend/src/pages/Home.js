@@ -1,12 +1,15 @@
-import Navbar from "../components/Navbar";
+import { useContext, useEffect } from "react";
+
+import { LocationContext } from "../context/LocationContext";
 
 function Home({ location }) {
-  return (
-    <>
-      <Navbar location={location} />
-      <h1>Home Page</h1>
-    </>
-  );
+  const { setLocation } = useContext(LocationContext);
+
+  useEffect(() => {
+    setLocation(location);
+  }, [location, setLocation]);
+
+  return <h1>Home Page</h1>;
 }
 
 export default Home;

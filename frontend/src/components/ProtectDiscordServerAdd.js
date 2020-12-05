@@ -2,12 +2,18 @@ import { useContext, useEffect, useState } from "react";
 
 import history from "../history";
 import { UserContext } from "../context/UserContext";
+import { LocationContext } from "../context/LocationContext";
 import { getDiscordServer } from "../services/DiscordServerService";
-import Navbar from "../components/Navbar";
 import DiscordServerAdd from "../pages/DiscordServerAdd";
 
 function ProtectDiscordServerAdd({ location, match }) {
   const { discordServerId } = match.params;
+
+  const { setLocation } = useContext(LocationContext);
+
+  useEffect(() => {
+    setLocation(location);
+  }, [location]);
 
   const { user } = useContext(UserContext);
 
@@ -31,15 +37,10 @@ function ProtectDiscordServerAdd({ location, match }) {
   }, [tokenType, token, user, discordServerId]);
 
   if (discordServer) {
-    return <DiscordServerAdd match={match} location={location} discordServer={discordServer} />;
+    return <DiscordServerAdd match={match} discordServer={discordServer} />;
   }
 
-  return (
-    <>
-      <Navbar location={location} />
-      <h1>Loading Discord Server Add...</h1>
-    </>
-  );
+  return <h1>Loading Discord Server Add...</h1>;
 }
 
 export default ProtectDiscordServerAdd;

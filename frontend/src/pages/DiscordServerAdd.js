@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import "../styles/discordServer.scss";
-import Navbar from "../components/Navbar";
 import TextForm from "../components/TextForm";
 
-function DiscordServer({ match, location, discordServer }) {
+function DiscordServer({ match, discordServer }) {
   const [commandType, setCommandType] = useState("text");
 
   function changeCommandType(ct) {
@@ -15,7 +14,6 @@ function DiscordServer({ match, location, discordServer }) {
 
   return (
     <>
-      <Navbar location={location} />
       <h1>{discordServer.name}</h1>
       <div id="command-types-buttons">
         <button onClick={() => changeCommandType("text")}>Text</button>

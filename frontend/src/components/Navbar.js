@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 
 import "../styles/navbar.scss";
 import { UserContext } from "../context/UserContext";
+import { LocationContext } from "../context/LocationContext";
 import NavUser from "./NavUser";
 import Login from "./Login";
 import Logout from "./Logout";
 
-function Navbar({ location }) {
+function Navbar() {
   const { user } = useContext(UserContext);
+  const { location } = useContext(LocationContext);
 
   return (
     <nav>
