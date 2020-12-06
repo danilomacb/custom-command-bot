@@ -22,9 +22,9 @@ function CheckAdmDiscordServer({ match, location }) {
   useEffect(() => {
     getDiscordServer(discordServerId).then((res) => {
       if (user) {
-        const findSuperAdm = res.superAdms.find((superAdm) => superAdm.discordUserId === user.id);
+        const superAdmFound = res.superAdms.find((superAdm) => superAdm.discordUserId === user.id);
 
-        if (findSuperAdm) setIsAdm(true);
+        if (superAdmFound) setIsAdm(true);
       }
 
       setDiscordServer(res);
