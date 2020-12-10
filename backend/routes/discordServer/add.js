@@ -3,11 +3,11 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function add(req, res) {
-  const { name, discordServerId, discordOwnerId } = req.body;
+  const { name, discordServerId, members } = req.body;
 
   const newDiscordServer = new DiscordServer({ name, discordServerId });
 
-  newDiscordServer.superAdms.push({ discordUserId: discordOwnerId });
+  newDiscordServer.members.push(...members)
 
   try {
     await newDiscordServer.save();
@@ -15,14 +15,14 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `New discord server registered on the database, data: {name: ${name}, discordServerId: ${discordServerId}, discordOwnerId: ${discordOwnerId}}`
+      `New discord server registered on the database, data: {name: ${name}, discordServerId: ${discordServerId}, members: ${members}}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Fail to register a new discord server on the database, data: {name: ${name}, discordServerId: ${discordServerId}, discordOwnerId: ${discordOwnerId}}`,
+      `Fail to register a new discord server on the database, data: {name: ${name}, discordServerId: ${discordServerId}}, members: ${members}`,
       err
     );
     return;

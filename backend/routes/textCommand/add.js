@@ -34,10 +34,10 @@ async function add(req, res) {
     return;
   }
 
-  const userFound = discordServer.superAdms.find(
+  const userFound = discordServer.members.find(
     (superAdm) => superAdm.discordUserId === user.data.id
   );
-  if (!userFound) {
+  if (!userFound.superAdm) {
     errorHandler(
       res,
       401,
