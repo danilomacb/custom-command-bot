@@ -20,11 +20,31 @@ client.on("ready", () => {
 });
 
 client.on("guildCreate", async (guild) => {
+  let members = [];
+
+  guild.members.cache.map((member) => {
+    if (!member.user.bot) {
+      let user = {
+        discordUserId: member.user.id,
+        discordUsername: member.user.username,
+        discordDiscriminator: member.user.discriminator,
+        discordAvatar: member.user.avatar,
+      };
+
+      if (member.user.id === guild.ownerID) {
+        user.adm = true;
+        user.superAdm = true;
+      }
+
+      members.push(user);
+    }
+  });
+
   try {
     const res = await axios.post(process.env.BACKEND_LINK_DEV + "/discord-server/add", {
       name: guild.name,
       discordServerId: guild.id,
-      discordOwnerId: guild.ownerID,
+      members,
     });
 
     console.log(`\n\t${res.data.message}`);
