@@ -17,14 +17,14 @@ function CheckAdmDiscordServer({ match, location }) {
   const { user } = useContext(UserContext);
 
   const [discordServer, setDiscordServer] = useState(null);
-  const [isAdm, setIsAdm] = useState(false);
+  const [superAdm, setSuperAdm] = useState(false);
 
   useEffect(() => {
     getDiscordServer(discordServerId).then((res) => {
       if (user) {
-        const superAdmFound = res.superAdms.find((superAdm) => superAdm.discordUserId === user.id);
+        const memberFound = res.members.find((member) => member.discordUserId === user.id);
 
-        if (superAdmFound) setIsAdm(true);
+        if (memberFound.superAdm) setSuperAdm(true);
       }
 
       setDiscordServer(res);
@@ -36,7 +36,7 @@ function CheckAdmDiscordServer({ match, location }) {
       <DiscordServer
         discordServerId={discordServerId}
         discordServer={discordServer}
-        isAdm={isAdm}
+        superAdm={superAdm}
       />
     );
 

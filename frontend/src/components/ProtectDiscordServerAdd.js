@@ -22,9 +22,9 @@ function ProtectDiscordServerAdd({ location, match }) {
   useEffect(() => {
     if (user) {
       getDiscordServer(discordServerId).then((res) => {
-        const superAdmFound = res.superAdms.find((superAdm) => superAdm.discordUserId === user.id);
+        const memberFound = res.members.find((member) => member.discordUserId === user.id);
 
-        if (superAdmFound) {
+        if (memberFound.superAdm) {
           setDiscordServer(res);
         } else {
           history.push("/");
