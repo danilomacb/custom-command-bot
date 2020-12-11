@@ -41,7 +41,7 @@ client.on("guildCreate", async (guild) => {
   });
 
   try {
-    const res = await axios.post(process.env.BACKEND_LINK_DEV + "/discord-server/add", {
+    const res = await axios.post(`${process.env.BACKEND_LINK_DEV}/discord-server/add`, {
       name: guild.name,
       discordServerId: guild.id,
       members,
@@ -56,8 +56,25 @@ client.on("guildCreate", async (guild) => {
 client.on("guildDelete", async (guild) => {
   try {
     const res = await axios.delete(
-      process.env.BACKEND_LINK_DEV + "/discord-server/" + guild.id + "/remove"
+      `${process.env.BACKEND_LINK_DEV}/discord-server/${guild.id}/remove"`
     );
+
+    console.log(`\n\t${res.data.message}`);
+  } catch (err) {
+    errorHandler(err);
+  }
+});
+
+client.on("guildMemberAdd", async (member) => {
+  try {
+    const res = await axios.post(`${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/add`, {
+      member: {
+        discordUserId: member.user.id,
+        discordUsername: member.user.username,
+        discordDiscriminator: member.user.discriminator,
+        discordAvatar: member.user.avatar,
+      },
+    });
 
     console.log(`\n\t${res.data.message}`);
   } catch (err) {
