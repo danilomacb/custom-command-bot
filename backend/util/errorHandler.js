@@ -1,7 +1,7 @@
 const getDate = require("./getDate");
 
 function errorHandler(res, status, msg, err) {
-  const dateMsg = `[${getDate()}] ${msg}`
+  const dateMsg = `[${getDate()}] ${msg}`;
 
   console.error(`\n\t${dateMsg}`);
   console.trace();
