@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const discordApi = require("./routes/discordApi");
 const discordServer = require("./routes/discordServer");
+const member = require("./routes/member");
 const textCommands = require("./routes/textCommand");
 const getDate = require("./util/getDate");
 
@@ -22,6 +23,7 @@ mongoose
 
     app.use("/discord-api", discordApi);
     app.use("/discord-server", discordServer);
+    app.use("/member", member);
     app.use("/text", textCommands);
 
     app.listen(process.env.PORT, () => {
