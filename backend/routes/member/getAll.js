@@ -1,24 +1,28 @@
+const getDiscordUserReq = require("../../util/getDiscordUserReq");
 const DiscordServer = require("../../models/DiscordServer");
 const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function getAll(req, res) {
-  const { discordServerId } = req.params;
+  const { discordServer, user } = res.locals;
 
-  try {
-    const discordServer = await DiscordServer.findOne({ discordServerId });
-
-    successHandler(res, 200, `All members listed, data: {discordServer: ${discordServer}}`, {
-      members: discordServer.members,
-    });
-  } catch (err) {
+  if (!user.superAdm) {
     errorHandler(
       res,
-      500,
-      `Fail to list all members, data: {discordServer: ${discordServer}}`,
-      err
+      401,
+      `This user doesn't have permission to see members in this discord server, data: {username: ${user.discordUsername}, userId, ${user.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
     );
+    return;
   }
+
+  successHandler(
+    res,
+    200,
+    `All members listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}}`,
+    {
+      members: discordServer.members,
+    }
+  );
 }
 
 module.exports = getAll;

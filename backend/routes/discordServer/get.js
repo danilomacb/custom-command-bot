@@ -1,25 +1,26 @@
-const DiscordServer = require("../../models/DiscordServer");
 const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function get(req, res) {
-  const { discordServerId } = req.params;
+  const { discordServer, user } = res.locals;
 
-  try {
-    const discordServer = await DiscordServer.findOne({ discordServerId });
-
-    successHandler(res, 200, `Discord server listed, data: {discordServerId: ${discordServerId}}`, {
-      discordServer,
-    });
-  } catch (err) {
+  if (!user) {
     errorHandler(
       res,
-      500,
-      `Fail to find discord server, data: {discordServerId: ${discordServerId}}`,
-      err
+      401,
+      `This user isn't a member and can't see info about this discord server, data: {username: ${user.discordUsername}, userId, ${user.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   }
+
+  successHandler(
+    res,
+    200,
+    `Discord server listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}}`,
+    {
+      discordServer: { name: discordServer.name, discordServerId: discordServer.discordServerId },
+    }
+  );
 }
 
 module.exports = get;
