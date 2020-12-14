@@ -1,7 +1,7 @@
 import "../styles/form.scss";
 import { addText } from "../services/TextService";
 
-function TextForm({ discordServerId }) {
+function TextCommandForm({ discordServerId }) {
   let tagInput;
   let messageTextarea;
 
@@ -25,4 +25,4 @@ function TextForm({ discordServerId }) {
   );
 }
 
-export default TextForm;
+export default TextCommandForm;
