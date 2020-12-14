@@ -7,7 +7,7 @@ function MembersList({ discordServer }) {
 
   useEffect(() => {
     getMembers(discordServer.discordServerId).then((res) => setMembersList(res));
-  }, []);
+  }, [discordServer.discordServerId]);
 
   if (membersList) {
     return (
