@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 import { UserContext } from "../context/UserContext";
+import history from "../history";
 
 function Logout() {
   const { setUser } = useContext(UserContext);
@@ -11,7 +12,9 @@ function Logout() {
         localStorage.removeItem("token");
         localStorage.removeItem("tokenType");
 
-        setUser(null);
+        setUser("guest");
+
+        history.push("/");
       }}
     >
       Logout
