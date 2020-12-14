@@ -21,7 +21,7 @@ function Navbar() {
           </li>
         </div>
         <div id="right">
-          {user ? (
+          {user && user !== "guest" ? (
             <>
               <li id="user">
                 <NavUser user={user} />

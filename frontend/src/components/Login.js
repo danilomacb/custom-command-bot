@@ -23,6 +23,10 @@ function Login({ location }) {
     if (!user && tokenType && token) {
       getUser(tokenType, token).then((user) => setUser(user));
     }
+
+    if (!tokenType && !token && !location.hash) {
+      setUser("guest");
+    }
   }, [location.hash, setUser, user]);
 
   return (
