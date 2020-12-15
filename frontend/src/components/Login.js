@@ -20,7 +20,7 @@ function Login({ location }) {
       localStorage.setItem("token", token);
     }
 
-    if (!user && tokenType && token) {
+    if ((!user || user === "guest") && tokenType && token) {
       getUser(tokenType, token).then((user) => setUser(user));
     }
 
