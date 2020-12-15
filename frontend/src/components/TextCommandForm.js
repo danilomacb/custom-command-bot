@@ -1,7 +1,12 @@
+import { useContext } from "react";
+
 import "../styles/form.scss";
-import { addText } from "../services/TextService";
+import { TextCommandListContext } from "../context/TextCommandListContext";
+import { addText, getTextCommands } from "../services/TextService";
 
 function TextCommandForm({ discordServerId }) {
+  const { setTextCommandList } = useContext(TextCommandListContext);
+
   let tagInput;
   let messageTextarea;
 
@@ -12,6 +17,9 @@ function TextCommandForm({ discordServerId }) {
 
     tagInput.value = "";
     messageTextarea.value = "";
+
+    const res = await getTextCommands(discordServerId);
+    setTextCommandList(res);
   }
 
   return (
