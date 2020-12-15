@@ -3,13 +3,13 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function getAll(req, res) {
-  const { discordServer, user } = res.locals;
+  const { discordServer, member } = res.locals;
 
-  if (!user) {
+  if (!member) {
     errorHandler(
       res,
       401,
-      `This user isn't a member and can't see the text commands from this server, data: {username: ${user.discordUsername}, userId, ${user.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `This user isn't a member and can't see the text commands from this server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   }

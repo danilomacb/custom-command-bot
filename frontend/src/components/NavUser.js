@@ -1,13 +1,13 @@
-function NavUser({ user }) {
+function NavUser({ discordUser }) {
   return (
     <>
-      {user.avatar ? (
+      {discordUser.avatar ? (
         <img
-          src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+          src={`https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png`}
           alt="avatar"
         />
       ) : null}
-      {user.username}
+      {discordUser.username}
     </>
   );
 }

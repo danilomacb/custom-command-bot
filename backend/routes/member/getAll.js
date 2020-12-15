@@ -4,13 +4,13 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function getAll(req, res) {
-  const { discordServer, user } = res.locals;
+  const { discordServer, member } = res.locals;
 
-  if (!user.superAdm) {
+  if (!member.superAdm) {
     errorHandler(
       res,
       401,
-      `This user doesn't have permission to see members in this discord server, data: {username: ${user.discordUsername}, userId, ${user.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `This user doesn't have permission to see members in this discord server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   }

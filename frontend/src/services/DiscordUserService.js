@@ -1,4 +1,4 @@
-export async function getUser(tokenType, token) {
+export async function getDiscordUser(tokenType, token) {
   let res;
   try {
     res = await fetch("http://localhost:3001/discord-api/get-user", {
@@ -19,7 +19,7 @@ export async function getUser(tokenType, token) {
   try {
     const jsonRes = await res.json();
 
-    return jsonRes.data.user;
+    return jsonRes.data.discordUser;
   } catch (err) {
     alert("Fail to login");
     console.error("Fail to covert response to json\n");

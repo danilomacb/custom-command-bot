@@ -24,7 +24,7 @@ client.on("guildCreate", async (guild) => {
 
   guild.members.cache.map((member) => {
     if (!member.user.bot) {
-      let user = {
+      let discordUser = {
         discordUserId: member.user.id,
         discordUsername: member.user.username,
         discordDiscriminator: member.user.discriminator,
@@ -32,11 +32,11 @@ client.on("guildCreate", async (guild) => {
       };
 
       if (member.user.id === guild.ownerID) {
-        user.adm = true;
-        user.superAdm = true;
+        discordUser.adm = true;
+        discordUser.superAdm = true;
       }
 
-      members.push(user);
+      members.push(discordUser);
     }
   });
 

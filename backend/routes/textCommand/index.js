@@ -1,12 +1,12 @@
 const express = require("express");
 
-const checkUser = require("../middleware/checkUser");
+const checkToken = require("../middleware/checkToken");
 const add = require("./add");
 const getAll = require("./getAll");
 
 const router = express.Router();
 
-router.post("/:discordServerId/add", checkUser, add);
-router.get("/:discordServerId/get-all", checkUser, getAll);
+router.post("/:discordServerId/add", checkToken, add);
+router.get("/:discordServerId/get-all", checkToken, getAll);
 
 module.exports = router;

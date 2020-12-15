@@ -2,13 +2,13 @@ const errorHandler = require("../../util/errorHandler");
 const successHandler = require("../../util/successHandler");
 
 function get(req, res) {
-  const { discordServer, user } = res.locals;
+  const { discordServer, member } = res.locals;
 
-  if (!user) {
+  if (!member) {
     errorHandler(
       res,
       401,
-      `This user isn't a member in this discord server, data: {username: ${user.discordUsername}, userId, ${user.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `This user isn't a member in this discord server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   }
@@ -16,8 +16,8 @@ function get(req, res) {
   successHandler(
     res,
     200,
-    `Member listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}, memberUsername: ${user.discordUsername}, memberId, ${user.id}}`,
-    { member: { ...user } }
+    `Member listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}, memberUsername: ${member.discordUsername}, memberId, ${member.id}}`,
+    { member }
   );
 }
 

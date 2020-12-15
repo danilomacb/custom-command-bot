@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
-import { UserContext } from "../context/UserContext";
+import { DiscordUserContext } from "../context/DiscordUserContext";
 import history from "../history";
 
 function Logout() {
-  const { setUser } = useContext(UserContext);
+  const { setDiscordUser } = useContext(DiscordUserContext);
 
   return (
     <button
@@ -12,7 +12,7 @@ function Logout() {
         localStorage.removeItem("token");
         localStorage.removeItem("tokenType");
 
-        setUser("guest");
+        setDiscordUser("guest");
 
         history.push("/");
       }}

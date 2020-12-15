@@ -1,11 +1,11 @@
 import { useEffect, useContext } from "react";
 import queryString from "query-string";
 
-import { UserContext } from "../context/UserContext";
-import { getUser } from "../services/UserService";
+import { DiscordUserContext } from "../context/DiscordUserContext";
+import { getDiscordUser } from "../services/DiscordUserService";
 
 function Login() {
-  const { user, setUser } = useContext(UserContext);
+  const { discordUser, setDiscordUser } = useContext(DiscordUserContext);
 
   useEffect(() => {
     let tokenType = localStorage.tokenType;
@@ -22,14 +22,14 @@ function Login() {
       localStorage.setItem("token", token);
     }
 
-    if ((!user || user === "guest") && tokenType && token) {
-      getUser(tokenType, token).then((user) => setUser(user));
+    if ((!discordUser || discordUser === "guest") && tokenType && token) {
+      getDiscordUser(tokenType, token).then((res) => setDiscordUser(res));
     }
 
     if (!tokenType && !token && !hash) {
-      setUser("guest");
+      setDiscordUser("guest");
     }
-  }, [setUser, user]);
+  }, [discordUser, setDiscordUser]);
 
   return (
     <a href="https://discord.com/api/oauth2/authorize?client_id=777841418483662868&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=token&scope=identify">

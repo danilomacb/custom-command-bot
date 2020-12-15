@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import "../styles/navbar.scss";
-import { UserContext } from "../context/UserContext";
+import { DiscordUserContext } from "../context/DiscordUserContext";
 import NavUser from "./NavUser";
 import Login from "./Login";
 import Logout from "./Logout";
 
 function Navbar() {
-  const { user } = useContext(UserContext);
+  const { discordUser } = useContext(DiscordUserContext);
 
   return (
     <nav>
@@ -19,10 +19,10 @@ function Navbar() {
           </li>
         </div>
         <div id="right">
-          {user && user !== "guest" ? (
+          {discordUser && discordUser !== "guest" ? (
             <>
-              <li id="user">
-                <NavUser user={user} />
+              <li id="discord-user">
+                <NavUser discordUser={discordUser} />
               </li>
               <li>
                 <Logout />

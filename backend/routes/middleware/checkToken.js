@@ -2,13 +2,13 @@ const getDiscordUserReq = require("../../util/getDiscordUserReq");
 const errorHandler = require("../../util/errorHandler");
 const DiscordServer = require("../../models/DiscordServer");
 
-async function checkUser(req, res, next) {
+async function checkToken(req, res, next) {
   const { authorization } = req.headers;
   const { discordServerId } = req.params;
 
-  let user;
+  let discordUser;
   try {
-    user = await getDiscordUserReq(authorization);
+    discordUser = await getDiscordUserReq(authorization);
   } catch (err) {
     errorHandler(res, 401, "Fail to get user data", err);
     return;
@@ -32,12 +32,12 @@ async function checkUser(req, res, next) {
     return;
   }
 
-  const userFound = discordServer.members.find((member) => member.discordUserId === user.data.id);
+  const memberFound = discordServer.members.find((member) => member.discordUserId === discordUser.data.id);
 
   res.locals.discordServer = discordServer;
-  res.locals.user = userFound;
+  res.locals.member = memberFound;
 
   next();
 }
 
-module.exports = checkUser;
+module.exports = checkToken;

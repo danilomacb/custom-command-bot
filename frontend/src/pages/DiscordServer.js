@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 
 import "../styles/tabs.scss";
-import { UserContext } from "../context/UserContext";
+import { DiscordUserContext } from "../context/DiscordUserContext";
 import history from "../history";
 import { getDiscordServer } from "../services/DiscordServerService";
 import TextCommand from "../components/TextCommand";
@@ -10,22 +10,22 @@ import MembersList from "../components/MembersList";
 function DiscordServer({ match }) {
   const { discordServerId } = match.params;
 
-  const { user } = useContext(UserContext);
+  const { discordUser } = useContext(DiscordUserContext);
 
   const [tab, setTab] = useState("text");
   const [discordServer, setDiscordServer] = useState(null);
 
   useEffect(() => {
-    if (user === "guest") {
+    if (discordUser === "guest") {
       alert("You need to login");
       history.push("/");
       return;
     }
 
-    if (user) {
+    if (discordUser) {
       getDiscordServer(discordServerId).then((res) => setDiscordServer(res));
     }
-  }, [user, discordServerId]);
+  }, [discordUser, discordServerId]);
 
   function changeTab(t) {
     if (tab !== t) {
