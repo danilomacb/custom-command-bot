@@ -4,15 +4,17 @@ import queryString from "query-string";
 import { UserContext } from "../context/UserContext";
 import { getUser } from "../services/UserService";
 
-function Login({ location }) {
+function Login() {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     let tokenType = localStorage.tokenType;
     let token = localStorage.token;
 
-    if (!tokenType && !token && location.hash) {
-      const parsedHash = queryString.parse(location.hash);
+    const { hash } = window.location;
+
+    if (!tokenType && !token && hash) {
+      const parsedHash = queryString.parse(hash);
       tokenType = parsedHash.token_type;
       token = parsedHash.access_token;
 
@@ -24,10 +26,10 @@ function Login({ location }) {
       getUser(tokenType, token).then((user) => setUser(user));
     }
 
-    if (!tokenType && !token && !location.hash) {
+    if (!tokenType && !token && !hash) {
       setUser("guest");
     }
-  }, [location.hash, setUser, user]);
+  }, [setUser, user]);
 
   return (
     <a href="https://discord.com/api/oauth2/authorize?client_id=777841418483662868&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=token&scope=identify">

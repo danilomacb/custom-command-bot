@@ -1,14 +1,4 @@
-import { useContext, useEffect } from "react";
-
-import { LocationContext } from "../context/LocationContext";
-
-function Home({ location }) {
-  const { setLocation } = useContext(LocationContext);
-
-  useEffect(() => {
-    setLocation(location);
-  }, [location, setLocation]);
-
+function Home() {
   return <h1>Home Page</h1>;
 }
 
