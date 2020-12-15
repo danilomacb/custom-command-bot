@@ -13,7 +13,7 @@ function MembersList({ discordServer }) {
     return (
       <>
         {membersList.map((member) => (
-          <>
+          <div key={member.discordUserId}>
             {member.discordAvatar ? (
               <img
                 src={`https://cdn.discordapp.com/avatars/${member.discordUserId}/${member.discordAvatar}.png`}
@@ -23,7 +23,7 @@ function MembersList({ discordServer }) {
             <div key={member.discordUserId}>
               {member.discordUsername}#{member.discordDiscriminator}
             </div>
-          </>
+          </div>
         ))}
       </>
     );
