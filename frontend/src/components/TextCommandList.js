@@ -8,7 +8,7 @@ function TextCommandList({ discordServerId }) {
 
   useEffect(() => {
     getTextCommands(discordServerId).then((res) => setTextCommandList(res));
-  }, [discordServerId]);
+  }, [discordServerId, setTextCommandList]);
 
   if (textCommandList) {
     return (
