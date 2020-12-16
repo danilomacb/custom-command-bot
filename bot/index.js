@@ -56,7 +56,7 @@ client.on("guildCreate", async (guild) => {
 client.on("guildDelete", async (guild) => {
   try {
     const res = await axios.delete(
-      `${process.env.BACKEND_LINK_DEV}/discord-server/${guild.id}/remove"`
+      `${process.env.BACKEND_LINK_DEV}/discord-server/${guild.id}/remove`
     );
 
     console.log(`\n\t${res.data.message}`);
