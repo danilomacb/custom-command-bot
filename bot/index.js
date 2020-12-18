@@ -66,6 +66,8 @@ client.on("guildDelete", async (guild) => {
 });
 
 client.on("guildMemberAdd", async (member) => {
+  if (member.user.bot) return;
+
   try {
     const res = await axios.post(`${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/add`, {
       member: {
@@ -77,6 +79,18 @@ client.on("guildMemberAdd", async (member) => {
     });
 
     console.log(`\n\t${res.data.message}`);
+  } catch (err) {
+    errorHandler(err);
+  }
+});
+
+client.on("guildMemberRemove", async (member) => {
+  if (member.user.bot) return;
+
+  try {
+    await axios.delete(
+      `${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/remove/${member.user.id}`
+    );
   } catch (err) {
     errorHandler(err);
   }
