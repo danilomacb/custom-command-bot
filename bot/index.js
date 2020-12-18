@@ -41,11 +41,15 @@ client.on("guildCreate", async (guild) => {
   });
 
   try {
-    const res = await axios.post(`${process.env.BACKEND_LINK_DEV}/discord-server/add`, {
-      name: guild.name,
-      discordServerId: guild.id,
-      members,
-    });
+    const res = await axios.post(
+      `${process.env.BACKEND_LINK_DEV}/discord-server/add`,
+      {
+        name: guild.name,
+        discordServerId: guild.id,
+        members,
+      },
+      { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
+    );
 
     console.log(`\n\t${res.data.message}`);
   } catch (err) {
@@ -56,7 +60,8 @@ client.on("guildCreate", async (guild) => {
 client.on("guildDelete", async (guild) => {
   try {
     const res = await axios.delete(
-      `${process.env.BACKEND_LINK_DEV}/discord-server/${guild.id}/remove`
+      `${process.env.BACKEND_LINK_DEV}/discord-server/${guild.id}/remove`,
+      { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
     );
 
     console.log(`\n\t${res.data.message}`);
@@ -69,14 +74,18 @@ client.on("guildMemberAdd", async (member) => {
   if (member.user.bot) return;
 
   try {
-    const res = await axios.post(`${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/add`, {
-      member: {
-        discordUserId: member.user.id,
-        discordUsername: member.user.username,
-        discordDiscriminator: member.user.discriminator,
-        discordAvatar: member.user.avatar,
+    const res = await axios.post(
+      `${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/add`,
+      {
+        member: {
+          discordUserId: member.user.id,
+          discordUsername: member.user.username,
+          discordDiscriminator: member.user.discriminator,
+          discordAvatar: member.user.avatar,
+        },
       },
-    });
+      { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
+    );
 
     console.log(`\n\t${res.data.message}`);
   } catch (err) {
@@ -89,7 +98,8 @@ client.on("guildMemberRemove", async (member) => {
 
   try {
     await axios.delete(
-      `${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/remove/${member.user.id}`
+      `${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/remove/${member.user.id}`,
+      { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
     );
   } catch (err) {
     errorHandler(err);
