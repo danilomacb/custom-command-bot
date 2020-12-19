@@ -40,7 +40,9 @@ function DiscordServer({ match }) {
         <div className="tabs">
           <button onClick={() => changeTab("text")}>Text</button>
           <button onClick={() => changeTab("image")}>Image</button>
-          <button onClick={() => changeTab("members")}>Members</button>
+          {discordServer.memberLogged.superAdm ? (
+            <button onClick={() => changeTab("members")}>Members</button>
+          ) : null}
         </div>
 
         {tab === "text" ? (
