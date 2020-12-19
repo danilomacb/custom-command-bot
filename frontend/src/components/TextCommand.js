@@ -5,6 +5,8 @@ import TextCommandList from "./TextCommandList";
 import TextCommandForm from "./TextCommandForm";
 
 function TextCommand({ discordServer }) {
+  const { memberLogged, discordServerId } = discordServer;
+
   const [mode, setMode] = useState("list");
 
   function changeMode(m) {
@@ -17,13 +19,15 @@ function TextCommand({ discordServer }) {
     <TextCommandListProvider>
       {mode === "list" ? (
         <>
-          <button onClick={() => changeMode("add")}>Add</button>
-          <TextCommandList discordServerId={discordServer.discordServerId} />
+          {memberLogged.superAdm || memberLogged.adm ? (
+            <button onClick={() => changeMode("add")}>Add</button>
+          ) : null}
+          <TextCommandList discordServerId={discordServerId} />
         </>
       ) : (
         <>
           <button onClick={() => changeMode("list")}>List</button>
-          <TextCommandForm discordServerId={discordServer.discordServerId} />
+          <TextCommandForm discordServerId={discordServerId} />
         </>
       )}
     </TextCommandListProvider>
