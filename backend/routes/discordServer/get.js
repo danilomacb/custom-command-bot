@@ -18,7 +18,11 @@ async function get(req, res) {
     200,
     `Discord server listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}}`,
     {
-      discordServer: { name: discordServer.name, discordServerId: discordServer.discordServerId },
+      discordServer: {
+        name: discordServer.name,
+        discordServerId: discordServer.discordServerId,
+        memberLogged: member,
+      },
     }
   );
 }
