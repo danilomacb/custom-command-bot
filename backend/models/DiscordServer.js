@@ -17,6 +17,7 @@ const DiscordServerSchema = new mongoose.Schema({
     {
       tag: { type: String, required: true },
       message: { type: String, required: true },
+      discordUserId: { type: String, required: true },
     },
   ],
 });

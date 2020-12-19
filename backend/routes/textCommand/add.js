@@ -3,9 +3,10 @@ const errorHandler = require("../../util/errorHandler");
 
 async function add(req, res) {
   const { member, discordServer } = res.locals;
+  const { discordUserId } = member;
   const { tag, message } = req.body;
 
-  if (!member.superAdm) {
+  if (!member.superAdm && !member.adm) {
     errorHandler(
       res,
       401,
@@ -14,7 +15,7 @@ async function add(req, res) {
     return;
   }
 
-  discordServer.textCommands.push({ tag, message });
+  discordServer.textCommands.push({ tag, message, discordUserId });
 
   try {
     await discordServer.save();
