@@ -20,7 +20,7 @@ async function checkBot(req, res, next) {
     );
   }
 
-  if (bot.data.id !== "777841418483662868") {
+  if (bot.data.id !== process.env.BOT_ID) {
     errorHandler(
       res,
       500,
