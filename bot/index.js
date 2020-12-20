@@ -51,7 +51,7 @@ client.on("guildCreate", async (guild) => {
       { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
     );
 
-    console.log(`\n\t${res.data.message}`);
+    console.log(`\n${res.data.message}`);
   } catch (err) {
     errorHandler(err);
   }
@@ -64,7 +64,7 @@ client.on("guildDelete", async (guild) => {
       { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
     );
 
-    console.log(`\n\t${res.data.message}`);
+    console.log(`\n${res.data.message}`);
   } catch (err) {
     errorHandler(err);
   }
@@ -87,7 +87,7 @@ client.on("guildMemberAdd", async (member) => {
       { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
     );
 
-    console.log(`\n\t${res.data.message}`);
+    console.log(`\n${res.data.message}`);
   } catch (err) {
     errorHandler(err);
   }
