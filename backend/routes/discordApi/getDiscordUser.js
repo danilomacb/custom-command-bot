@@ -9,12 +9,15 @@ async function getDiscordUser(req, res) {
     successHandler(
       res,
       200,
-      `Get discord user, data: {discordUserUsername: ${discordUser.data.username}, discordUserId: ${discordUser.data.id}}`,
+      `User logged in,
+discordUserUsername: ${discordUser.data.username}, 
+discordUserDiscriminator: ${discordUser.data.discriminator},
+discordUserId: ${discordUser.data.id}`,
       { discordUser: discordUser.data }
     );
     return;
   } catch (err) {
-    errorHandler(res, 401, "Fail to get discord user", err);
+    errorHandler(res, 401, "Error on login, request failed", err);
     return;
   }
 }

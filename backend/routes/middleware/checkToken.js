@@ -10,7 +10,13 @@ async function checkToken(req, res, next) {
   try {
     discordUser = await getDiscordUserReq(authorization);
   } catch (err) {
-    errorHandler(res, 401, "Fail to get user data", err);
+    errorHandler(
+      res,
+      401,
+      `Error on check token, request failed,
+discordServerId: ${discordServerId}`,
+      err
+    );
     return;
   }
 
@@ -21,18 +27,26 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       500,
-      `Fail to find discord server, data: {discordServerId: ${discordServerId}}`,
+      `Error on check token, find failed,
+discordServerId: ${discordServerId}`,
       err
     );
     return;
   }
 
   if (!discordServer) {
-    errorHandler(res, 404, `Discord server not found, data: {discordServerId: ${discordServerId}}`);
+    errorHandler(
+      res,
+      404,
+      `Error on check token, discord server not found,
+discordServerId: ${discordServerId}`
+    );
     return;
   }
 
-  const memberFound = discordServer.members.find((member) => member.discordUserId === discordUser.data.id);
+  const memberFound = discordServer.members.find(
+    (member) => member.discordUserId === discordUser.data.id
+  );
 
   res.locals.discordServer = discordServer;
   res.locals.member = memberFound;

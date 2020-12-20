@@ -10,7 +10,12 @@ async function getAll(req, res) {
     errorHandler(
       res,
       401,
-      `This user doesn't have permission to see members in this discord server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied, 
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   }
@@ -18,7 +23,12 @@ async function getAll(req, res) {
   successHandler(
     res,
     200,
-    `All members listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}}`,
+    `All members listed,
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId},
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId}`,
     {
       members: discordServer.members,
     }

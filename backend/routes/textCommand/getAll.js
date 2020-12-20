@@ -9,14 +9,29 @@ async function getAll(req, res) {
     errorHandler(
       res,
       401,
-      `This user isn't a member and can't see the text commands from this server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied,
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
 
-  successHandler(res, 200, `All text commands listed, data: {discordServerId: ${discordServer.discordServerId}}`, {
-    textCommands: discordServer.textCommands,
-  });
+  successHandler(
+    res,
+    200,
+    `All text commands listed,
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId},
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId}`,
+    {
+      textCommands: discordServer.textCommands,
+    }
+  );
 }
 
 module.exports = getAll;

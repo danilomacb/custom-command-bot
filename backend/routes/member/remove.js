@@ -12,7 +12,9 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      `Fail to find discord server, data: {discordServerId: ${discordServerId}, discordUserId: ${discordUserId}}`,
+      `Error on remove member, find failed,
+discordServerId: ${discordServerId},
+discordUserId: ${discordUserId}`,
       err
     );
   }
@@ -27,13 +29,19 @@ async function remove(req, res) {
     successHandler(
       res,
       200,
-      `Member removed, data: {discordServerId: ${discordServerId}, discordServerName: ${discordServer.name}, discordUserId: ${discordUserId}}`
+      `Member removed,
+discordServerId: ${discordServerId},
+discordServerName: ${discordServer.name},
+discordUserId: ${discordUserId}`
     );
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Fail to save database, data: {discordServerId: ${discordServerId}, discordServerName: ${discordServer.name}, discordUserId: ${discordUserId}}`,
+      `Error on remove member, save failed,
+discordServerId: ${discordServerId},
+discordServerName: ${discordServer.name},
+discordUserId: ${discordUserId}`,
       err
     );
   }

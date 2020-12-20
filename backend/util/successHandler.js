@@ -3,7 +3,7 @@ const getDate = require("./getDate");
 function successHandler(res, status, msg, data) {
   const dateMsg = `[${getDate()}] ${msg}`
 
-  console.log(`\n\t${dateMsg}`);
+  console.log(`\n${dateMsg}`);
 
   if (data) {
     res.status(status).json({ data, message: dateMsg });

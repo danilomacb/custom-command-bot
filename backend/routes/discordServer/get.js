@@ -8,7 +8,12 @@ async function get(req, res) {
     errorHandler(
       res,
       401,
-      `This user isn't a member and can't see info about this discord server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied,
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -16,7 +21,12 @@ async function get(req, res) {
   successHandler(
     res,
     200,
-    `Discord server listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}}`,
+    `Discord server listed,
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId},
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId}`,
     {
       discordServer: {
         name: discordServer.name,

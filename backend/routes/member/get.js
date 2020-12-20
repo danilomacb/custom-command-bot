@@ -8,7 +8,12 @@ function get(req, res) {
     errorHandler(
       res,
       401,
-      `This user isn't a member in this discord server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied,
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId: ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -16,7 +21,12 @@ function get(req, res) {
   successHandler(
     res,
     200,
-    `Member listed, data: {discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}, memberUsername: ${member.discordUsername}, memberId, ${member.id}}`,
+    `Member listed,
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerId: ${discordServer.discordServerId},
+discordServerName: ${discordServer.name}`,
     { member }
   );
 }

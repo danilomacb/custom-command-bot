@@ -10,7 +10,12 @@ async function add(req, res) {
     errorHandler(
       res,
       401,
-      `This user doesn't have permission to add text command in this discord server, data: {memberUsername: ${member.discordUsername}, memberId, ${member.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied,
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   }
@@ -23,14 +28,28 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Text command added, data: {tag: ${tag}, message: ${message}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Text command added,
+tag: ${tag},
+message: ${message},
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Fail to save text command, data: {tag: ${tag}, message: ${message}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`,
+      `Error on add text command, save failed,
+tag: ${tag},
+message: ${message},
+memberUsername: ${member.discordUsername},
+memberDiscriminator: ${member.discordDiscriminator},
+memberId, ${member.discordUserId},
+discordServerName: ${discordServer.name},
+discordServerId: ${discordServer.discordServerId}}`,
       err
     );
     return;

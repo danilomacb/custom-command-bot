@@ -15,7 +15,9 @@ async function checkBot(req, res, next) {
     errorHandler(
       res,
       500,
-      `Fail to get bot data from discord api, data: {discordServerName: ${name}, discordServerId: ${discordServerId}}`,
+      `Error on check bot, request failed,
+discordServerName: ${name},
+discordServerId: ${discordServerId}`,
       err
     );
   }
@@ -24,7 +26,9 @@ async function checkBot(req, res, next) {
     errorHandler(
       res,
       500,
-      `Permission denied, data: {discordServerName: ${name}, discordServerId: ${discordServerId}}`
+      `Permission denied,
+discordServerName: ${name},
+discordServerId: ${discordServerId}}`
     );
   }
 

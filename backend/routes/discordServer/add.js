@@ -7,7 +7,7 @@ async function add(req, res) {
 
   const newDiscordServer = new DiscordServer({ name, discordServerId });
 
-  newDiscordServer.members.push(...members)
+  newDiscordServer.members.push(...members);
 
   try {
     await newDiscordServer.save();
@@ -15,14 +15,20 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `New discord server registered on the database, data: {name: ${name}, discordServerId: ${discordServerId}}`
+      `Discord server added,
+discordServerName: ${name},
+discordServerId: ${discordServerId},
+members: ${JSON.stringify(members)}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Fail to register a new discord server on the database, data: {name: ${name}, discordServerId: ${discordServerId}}`,
+      `Error on add discord server, save failed,
+discordServerName: ${name},
+discordServerId: ${discordServerId},
+members: ${JSON.stringify(members)}`,
       err
     );
     return;

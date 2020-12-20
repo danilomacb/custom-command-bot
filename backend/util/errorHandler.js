@@ -3,7 +3,7 @@ const getDate = require("./getDate");
 function errorHandler(res, status, msg, err) {
   const dateMsg = `[${getDate()}] ${msg}`;
 
-  console.error(`\n\t${dateMsg}`);
+  console.error(`\n${dateMsg}`);
   console.trace();
 
   if (err) console.error(err);
