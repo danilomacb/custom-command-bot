@@ -1,3 +1,5 @@
+import history from "../history";
+
 export async function getDiscordServer(discordServerId) {
   let res;
   try {
@@ -7,6 +9,18 @@ export async function getDiscordServer(discordServerId) {
         authorization: `${localStorage.tokenType} ${localStorage.token}`,
       },
     });
+
+    if (res.status === 404) {
+      alert("This discord server isn't registered");
+      history.push("/");
+      return;
+    }
+
+    if (res.status !== 200) {
+      alert("Fail to load discord server");
+      history.push("/");
+      return;
+    }
   } catch (err) {
     console.error("Fail to list discord server\n", err);
     return;
