@@ -35,7 +35,7 @@ memberUsername: ${member.discordUsername},
 memberDiscriminator: ${member.discordDiscriminator},
 memberId, ${member.discordUserId},
 discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}}`
+discordServerId: ${discordServer.discordServerId}`
     );
     return;
   } catch (err) {
@@ -49,7 +49,7 @@ memberUsername: ${member.discordUsername},
 memberDiscriminator: ${member.discordDiscriminator},
 memberId, ${member.discordUserId},
 discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}}`,
+discordServerId: ${discordServer.discordServerId}`,
       err
     );
     return;
