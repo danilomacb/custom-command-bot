@@ -15,7 +15,7 @@ async function remove(req, res) {
   });
 
   if (member.superAdm || (member.adm && member.discordUserId === command.discordUserId)) {
-    discordServer.textCommands.splice(1, index);
+    discordServer.textCommands.splice(index, 1);
   } else {
     errorHandler(
       res,
