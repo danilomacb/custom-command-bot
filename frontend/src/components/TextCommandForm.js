@@ -1,11 +1,17 @@
 import { useContext } from "react";
 
 import "../styles/form.scss";
-import { TextCommandListContext } from "../context/TextCommandListContext";
-import { addText, getTextCommands } from "../services/TextService";
+import { TextCommandContext } from "../context/TextCommandContext";
+import { addText, getTextCommands, updateTextCommand } from "../services/TextService";
 
 function TextCommandForm({ discordServerId }) {
-  const { setTextCommandList } = useContext(TextCommandListContext);
+  const {
+    setTextCommandList,
+    textCommandId,
+    textCommandTag,
+    textCommandMessage,
+    textCommandMode,
+  } = useContext(TextCommandContext);
 
   let tagInput;
   let messageTextarea;
@@ -13,10 +19,21 @@ function TextCommandForm({ discordServerId }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await addText(discordServerId, tagInput.value, messageTextarea.value);
+    if (textCommandMode === "add") {
+      await addText(discordServerId, tagInput.value, messageTextarea.value);
 
-    tagInput.value = "";
-    messageTextarea.value = "";
+      tagInput.value = "";
+      messageTextarea.value = "";
+    }
+
+    if (textCommandMode === "update") {
+      await updateTextCommand(
+        discordServerId,
+        textCommandId,
+        tagInput.value,
+        messageTextarea.value
+      );
+    }
 
     const res = await getTextCommands(discordServerId);
     setTextCommandList(res);
@@ -25,8 +42,12 @@ function TextCommandForm({ discordServerId }) {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <input type="text" ref={(input) => (tagInput = input)} />
-        <textarea type="message" ref={(textarea) => (messageTextarea = textarea)} />
+        <input type="text" ref={(input) => (tagInput = input)} defaultValue={textCommandTag} />
+        <textarea
+          type="message"
+          ref={(textarea) => (messageTextarea = textarea)}
+          defaultValue={textCommandMessage}
+        />
         <button type="submit">Send</button>
       </form>
     </div>

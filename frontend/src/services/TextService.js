@@ -49,3 +49,29 @@ export async function getTextCommands(discordServerId) {
     return;
   }
 }
+
+export async function updateTextCommand(discordServerId, textCommandId, tag, message) {
+  try {
+    const res = await fetch(
+      `http://localhost:3001/text/${discordServerId}/update/${textCommandId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${localStorage.tokenType} ${localStorage.token}`,
+        },
+        body: JSON.stringify({ tag, message }),
+      }
+    );
+
+    if (!res.ok) {
+      alert("Fail to update text command");
+      return;
+    }
+
+    alert("Text command updated");
+  } catch (err) {
+    alert("Fail to update text command");
+    console.error("Fail to update text command\n", err);
+  }
+}

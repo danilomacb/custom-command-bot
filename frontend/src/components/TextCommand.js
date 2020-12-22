@@ -1,36 +1,44 @@
-import { useState } from "react";
+import { useContext } from "react";
 
-import TextCommandListProvider from "../context/TextCommandListContext";
+import "../styles/textCommand.scss";
+import { TextCommandContext } from "../context/TextCommandContext";
 import TextCommandList from "./TextCommandList";
 import TextCommandForm from "./TextCommandForm";
 
 function TextCommand({ discordServer }) {
   const { memberLogged, discordServerId } = discordServer;
 
-  const [mode, setMode] = useState("list");
-
-  function changeMode(m) {
-    if (mode !== m) {
-      setMode(m);
-    }
-  }
+  const {
+    textCommandMode,
+    setTextCommandMode,
+    setTextCommandTag,
+    setTextCommandMessage,
+  } = useContext(TextCommandContext);
 
   return (
-    <TextCommandListProvider>
-      {mode === "list" ? (
+    <>
+      {textCommandMode === "list" ? (
         <>
           {memberLogged.superAdm || memberLogged.adm ? (
-            <button onClick={() => changeMode("add")}>Add</button>
+            <button
+              onClick={() => {
+                setTextCommandTag("");
+                setTextCommandMessage("");
+                setTextCommandMode("add");
+              }}
+            >
+              Add
+            </button>
           ) : null}
           <TextCommandList discordServerId={discordServerId} />
         </>
       ) : (
         <>
-          <button onClick={() => changeMode("list")}>List</button>
+          <button onClick={() => setTextCommandMode("list")}>List</button>
           <TextCommandForm discordServerId={discordServerId} />
         </>
       )}
-    </TextCommandListProvider>
+    </>
   );
 }
 
