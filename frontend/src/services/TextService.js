@@ -1,4 +1,4 @@
-export async function addText(discordServerId, tag, message) {
+export async function addTextCommand(discordServerId, tag, message) {
   try {
     const res = await fetch(`http://localhost:3001/text/${discordServerId}/add`, {
       method: "POST",

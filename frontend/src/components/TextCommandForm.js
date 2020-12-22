@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import "../styles/form.scss";
 import { TextCommandContext } from "../context/TextCommandContext";
-import { addText, getTextCommands, updateTextCommand } from "../services/TextService";
+import { addTextCommand, getTextCommands, updateTextCommand } from "../services/TextService";
 
 function TextCommandForm({ discordServerId }) {
   const {
@@ -20,7 +20,7 @@ function TextCommandForm({ discordServerId }) {
     e.preventDefault();
 
     if (textCommandMode === "add") {
-      await addText(discordServerId, tagInput.value, messageTextarea.value);
+      await addTextCommand(discordServerId, tagInput.value, messageTextarea.value);
 
       tagInput.value = "";
       messageTextarea.value = "";
