@@ -75,3 +75,28 @@ export async function updateTextCommand(discordServerId, textCommandId, tag, mes
     console.error("Fail to update text command\n", err);
   }
 }
+
+export async function removeTextCommand(discordServerId, textCommandId) {
+  try {
+    const res = await fetch(
+      `http://localhost:3001/text/${discordServerId}/remove/${textCommandId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${localStorage.tokenType} ${localStorage.token}`,
+        }
+      }
+    );
+
+    if (!res.ok) {
+      alert("Fail to remove text command");
+      return;
+    }
+
+    alert("Text command removed");
+  } catch (err) {
+    alert("Fail to remove text command");
+    console.error("Fail to remove text command\n", err);
+  }
+}

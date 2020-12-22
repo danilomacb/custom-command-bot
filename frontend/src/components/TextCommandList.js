@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 
 import { TextCommandContext } from "../context/TextCommandContext";
-import { getTextCommands } from "../services/TextService";
+import { getTextCommands, removeTextCommand } from "../services/TextService";
 
 function TextCommandList({ discordServerId }) {
   const {
@@ -16,6 +16,14 @@ function TextCommandList({ discordServerId }) {
   useEffect(() => {
     getTextCommands(discordServerId).then((res) => setTextCommandList(res));
   }, [discordServerId, setTextCommandList]);
+
+  async function handleRemove(textCommandId) {
+    await removeTextCommand(discordServerId, textCommandId);
+
+    const res = await getTextCommands(discordServerId);
+
+    setTextCommandList(res);
+  }
 
   if (textCommandList) {
     return (
@@ -34,7 +42,7 @@ function TextCommandList({ discordServerId }) {
             >
               Edit
             </button>
-            <button>Delete</button>
+            <button onClick={() => handleRemove(textCommand._id)}>Delete</button>
           </div>
         ))}
       </>
