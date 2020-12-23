@@ -8,12 +8,7 @@ async function get(req, res) {
     errorHandler(
       res,
       401,
-      `Permission denied,
-memberUsername: ${member.discordUsername},
-memberDiscriminator: ${member.discordDiscriminator},
-memberId, ${member.discordUserId},
-discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -21,12 +16,7 @@ discordServerId: ${discordServer.discordServerId}`
   successHandler(
     res,
     200,
-    `Discord server listed,
-discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId},
-memberUsername: ${member.discordUsername},
-memberDiscriminator: ${member.discordDiscriminator},
-memberId, ${member.discordUserId}`,
+    `Discord server listed, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}`,
     {
       discordServer: {
         name: discordServer.name,

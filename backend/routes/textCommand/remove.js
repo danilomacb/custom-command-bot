@@ -20,12 +20,7 @@ async function remove(req, res) {
     errorHandler(
       res,
       401,
-      `Permission denied,
-memberUsername: ${member.discordUsername},
-memberDiscriminator: ${member.discordDiscriminator},
-memberId, ${member.discordUserId},
-discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -36,25 +31,13 @@ discordServerId: ${discordServer.discordServerId}`
     successHandler(
       res,
       200,
-      `Text command removed,
-  textCommandId: ${textCommandId}
-  memberUsername: ${member.discordUsername},
-  memberDiscriminator: ${member.discordDiscriminator},
-  memberId, ${member.discordUserId},
-  discordServerName: ${discordServer.name},
-  discordServerId: ${discordServer.discordServerId}`
+      `Text command removed, textCommandId: ${textCommandId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on remove text command, save failed
-  textCommandId: ${textCommandId}
-  memberUsername: ${member.discordUsername},
-  memberDiscriminator: ${member.discordDiscriminator},
-  memberId, ${member.discordUserId},
-  discordServerName: ${discordServer.name},
-  discordServerId: ${discordServer.discordServerId}`,
+      `Error on remove text command, save failed, textCommandId: ${textCommandId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`,
       err
     );
   }

@@ -15,20 +15,18 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Discord server added,
-discordServerName: ${name},
-discordServerId: ${discordServerId},
-members: ${JSON.stringify(members)}`
+      `Discord server added, discordServerName: ${name}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
+        members
+      )}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on add discord server, save failed,
-discordServerName: ${name},
-discordServerId: ${discordServerId},
-members: ${JSON.stringify(members)}`,
+      `Error on add discord server, save failed, discordServerName: ${name}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
+        members
+      )}`,
       err
     );
     return;

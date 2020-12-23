@@ -13,8 +13,7 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       401,
-      `Error on check token, request failed,
-discordServerId: ${discordServerId}`,
+      `Error on check token, request failed, discordServerId: ${discordServerId}`,
       err
     );
     return;
@@ -27,8 +26,7 @@ discordServerId: ${discordServerId}`,
     errorHandler(
       res,
       500,
-      `Error on check token, find failed,
-discordServerId: ${discordServerId}`,
+      `Error on check token, find failed, discordServerId: ${discordServerId}`,
       err
     );
     return;
@@ -38,8 +36,7 @@ discordServerId: ${discordServerId}`,
     errorHandler(
       res,
       404,
-      `Error on check token, discord server not found,
-discordServerId: ${discordServerId}`
+      `Error on check token, discord server not found, discordServerId: ${discordServerId}`
     );
     return;
   }

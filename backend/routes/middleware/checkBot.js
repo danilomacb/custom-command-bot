@@ -15,9 +15,7 @@ async function checkBot(req, res, next) {
     errorHandler(
       res,
       500,
-      `Error on check bot, request failed,
-discordServerName: ${name},
-discordServerId: ${discordServerId}`,
+      `Error on check bot, request failed, discordServerName: ${name}, discordServerId: ${discordServerId}`,
       err
     );
   }
@@ -26,9 +24,7 @@ discordServerId: ${discordServerId}`,
     errorHandler(
       res,
       500,
-      `Permission denied,
-discordServerName: ${name},
-discordServerId: ${discordServerId}}`
+      `Permission denied, discordServerName: ${name}, discordServerId: ${discordServerId}}`
     );
   }
 

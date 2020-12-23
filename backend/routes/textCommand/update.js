@@ -15,12 +15,7 @@ async function update(req, res) {
         errorHandler(
           res,
           401,
-          `Permission denied,
-memberUsername: ${member.discordUsername},
-memberDiscriminator: ${member.discordDiscriminator},
-memberId, ${member.discordUserId},
-discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}`
+          `Permission denied, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
         );
         return;
       }
@@ -33,29 +28,13 @@ discordServerId: ${discordServer.discordServerId}`
     successHandler(
       res,
       200,
-      `Text command updated
-tag: ${tag},
-message: ${message},
-textCommandId: ${textCommandId}
-memberUsername: ${member.discordUsername},
-memberDiscriminator: ${member.discordDiscriminator},
-memberId, ${member.discordUserId},
-discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}`
+      `Text command updated, tag: ${tag}, message: ${message}, textCommandId: ${textCommandId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on update text command, save failed
-tag: ${tag},
-message: ${message},
-textCommandId: ${textCommandId}
-memberUsername: ${member.discordUsername},
-memberDiscriminator: ${member.discordDiscriminator},
-memberId, ${member.discordUserId},
-discordServerName: ${discordServer.name},
-discordServerId: ${discordServer.discordServerId}`,
+      `Error on update text command, save failed, tag: ${tag}, message: ${message}, textCommandId: ${textCommandId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`,
       err
     );
   }

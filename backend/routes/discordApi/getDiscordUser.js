@@ -9,10 +9,7 @@ async function getDiscordUser(req, res) {
     successHandler(
       res,
       200,
-      `User logged in,
-discordUserUsername: ${discordUser.data.username}, 
-discordUserDiscriminator: ${discordUser.data.discriminator},
-discordUserId: ${discordUser.data.id}`,
+      `User logged in, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}`,
       { discordUser: discordUser.data }
     );
     return;
