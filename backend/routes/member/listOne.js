@@ -1,7 +1,7 @@
 const errorHandler = require("../../util/errorHandler");
 const successHandler = require("../../util/successHandler");
 
-function get(req, res) {
+function listOne(req, res) {
   const { discordServer, member } = res.locals;
 
   if (!member) {
@@ -21,4 +21,4 @@ function get(req, res) {
   );
 }
 
-module.exports = get;
+module.exports = listOne;

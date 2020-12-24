@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-import { getMembers } from "../services/MemberService";
+import { listAllMembers } from "../services/MemberService";
 
 function MembersList({ discordServer }) {
   const [membersList, setMembersList] = useState(null);
 
   useEffect(() => {
-    getMembers(discordServer.discordServerId).then((res) => setMembersList(res));
+    listAllMembers(discordServer.discordServerId).then((res) => setMembersList(res));
   }, [discordServer.discordServerId]);
 
   if (membersList) {

@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import "../styles/form.scss";
 import { TextCommandContext } from "../context/TextCommandContext";
-import { addTextCommand, getTextCommands, updateTextCommand } from "../services/TextService";
+import { addTextCommand, listAllTextCommands, updateTextCommand } from "../services/TextService";
 
 function TextCommandForm({ discordServerId }) {
   const {
@@ -35,7 +35,7 @@ function TextCommandForm({ discordServerId }) {
       );
     }
 
-    const res = await getTextCommands(discordServerId);
+    const res = await listAllTextCommands(discordServerId);
     setTextCommandList(res);
   }
 

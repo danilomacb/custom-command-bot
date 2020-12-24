@@ -1,7 +1,7 @@
-export async function getDiscordUser(tokenType, token) {
+export async function listOneDiscordUser(tokenType, token) {
   let res;
   try {
-    res = await fetch("http://localhost:3001/discord-api/get-user", {
+    res = await fetch("http://localhost:3001/discord-api/user/list-one", {
       method: "GET",
       headers: { authorization: `${tokenType} ${token}` },
     });
@@ -12,7 +12,7 @@ export async function getDiscordUser(tokenType, token) {
     }
   } catch (err) {
     alert("Fail to login");
-    console.error("Fail to get user\n", err);
+    console.error("Fail to list user\n", err);
     return;
   }
 

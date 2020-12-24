@@ -1,10 +1,10 @@
-const getDiscordUserReq = require("../../util/getDiscordUserReq");
+const listOneDiscordUserReq = require("../../util/listOneDiscordUserReq");
 const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
-async function getDiscordUser(req, res) {
+async function listOneDiscordUser(req, res) {
   try {
-    const discordUser = await getDiscordUserReq(req.headers.authorization);
+    const discordUser = await listOneDiscordUserReq(req.headers.authorization);
 
     successHandler(
       res,
@@ -19,4 +19,4 @@ async function getDiscordUser(req, res) {
   }
 }
 
-module.exports = getDiscordUser;
+module.exports = listOneDiscordUser;

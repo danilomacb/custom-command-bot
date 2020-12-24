@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-async function getDiscordGuildsReq(authorization) {
+async function listAllDiscordGuildsReq(authorization) {
   const guilds = await axios.get("https://discord.com/api/users/@me/guilds", {
     headers: {
       authorization,
@@ -10,4 +10,4 @@ async function getDiscordGuildsReq(authorization) {
   return guilds;
 }
 
-module.exports = getDiscordGuildsReq;
+module.exports = listAllDiscordGuildsReq;

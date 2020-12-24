@@ -1,7 +1,7 @@
 const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
-async function getAll(req, res) {
+async function listAll(req, res) {
   const { discordServer, member } = res.locals;
 
   if (!member) {
@@ -23,4 +23,4 @@ async function getAll(req, res) {
   );
 }
 
-module.exports = getAll;
+module.exports = listAll;

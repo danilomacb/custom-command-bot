@@ -1,4 +1,4 @@
-const getDiscordUserReq = require("../../util/getDiscordUserReq");
+const listOneDiscordUserReq = require("../../util/listOneDiscordUserReq");
 const errorHandler = require("../../util/errorHandler");
 const DiscordServer = require("../../models/DiscordServer");
 
@@ -8,7 +8,7 @@ async function checkToken(req, res, next) {
 
   let discordUser;
   try {
-    discordUser = await getDiscordUserReq(authorization);
+    discordUser = await listOneDiscordUserReq(authorization);
   } catch (err) {
     errorHandler(
       res,

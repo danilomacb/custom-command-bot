@@ -21,10 +21,10 @@ export async function addTextCommand(discordServerId, tag, message) {
   }
 }
 
-export async function getTextCommands(discordServerId) {
+export async function listAllTextCommands(discordServerId) {
   let res;
   try {
-    res = await fetch(`http://localhost:3001/text/${discordServerId}/get-all`, {
+    res = await fetch(`http://localhost:3001/text/${discordServerId}/list-all`, {
       method: "GET",
       headers: {
         authorization: `${localStorage.tokenType} ${localStorage.token}`,
@@ -32,12 +32,12 @@ export async function getTextCommands(discordServerId) {
     });
 
     if (!res.ok) {
-      alert("Fail to get all text commands");
+      alert("Fail to list all text commands");
       return;
     }
   } catch (err) {
-    alert("Fail to get all text commands");
-    console.error("Fail to get all text commands\n", err);
+    alert("Fail to list all text commands");
+    console.error("Fail to list all text commands\n", err);
   }
 
   try {

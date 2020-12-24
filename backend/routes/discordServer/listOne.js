@@ -1,7 +1,7 @@
 const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
-async function get(req, res) {
+async function listOne(req, res) {
   const { discordServer, member } = res.locals;
 
   if (!member) {
@@ -16,7 +16,7 @@ async function get(req, res) {
   successHandler(
     res,
     200,
-    `Discord server listed, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}`,
+    `One discord server listed, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}`,
     {
       discordServer: {
         name: discordServer.name,
@@ -27,4 +27,4 @@ async function get(req, res) {
   );
 }
 
-module.exports = get;
+module.exports = listOne;

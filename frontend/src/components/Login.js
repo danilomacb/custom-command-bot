@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import queryString from "query-string";
 
 import { DiscordUserContext } from "../context/DiscordUserContext";
-import { getDiscordUser } from "../services/DiscordUserService";
+import { listOneDiscordUser } from "../services/DiscordUserService";
 
 function Login() {
   const { discordUser, setDiscordUser } = useContext(DiscordUserContext);
@@ -23,7 +23,7 @@ function Login() {
     }
 
     if ((!discordUser || discordUser === "guest") && tokenType && token) {
-      getDiscordUser(tokenType, token).then((res) => setDiscordUser(res));
+      listOneDiscordUser(tokenType, token).then((res) => setDiscordUser(res));
     }
 
     if (!tokenType && !token && !hash) {

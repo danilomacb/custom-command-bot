@@ -1,9 +1,9 @@
 import history from "../history";
 
-export async function getDiscordServer(discordServerId) {
+export async function listOneDiscordServer(discordServerId) {
   let res;
   try {
-    res = await fetch(`http://localhost:3001/discord-server/${discordServerId}/get`, {
+    res = await fetch(`http://localhost:3001/discord-server/${discordServerId}/list-one`, {
       method: "GET",
       headers: {
         authorization: `${localStorage.tokenType} ${localStorage.token}`,

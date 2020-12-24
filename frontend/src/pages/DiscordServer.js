@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import "../styles/tabs.scss";
 import { DiscordUserContext } from "../context/DiscordUserContext";
 import history from "../history";
-import { getDiscordServer } from "../services/DiscordServerService";
+import { listOneDiscordServer } from "../services/DiscordServerService";
 import TextCommandProvider from "../context/TextCommandContext";
 import TextCommand from "../components/TextCommand";
 import MembersList from "../components/MembersList";
@@ -24,7 +24,7 @@ function DiscordServer({ match }) {
     }
 
     if (discordUser) {
-      getDiscordServer(discordServerId).then((res) => setDiscordServer(res));
+      listOneDiscordServer(discordServerId).then((res) => setDiscordServer(res));
     }
   }, [discordUser, discordServerId]);
 

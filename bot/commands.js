@@ -3,7 +3,7 @@ const axios = require("axios");
 const { prefix } = require("./config.json");
 
 async function commands(message) {
-  const res = await axios.get(`${process.env.BACKEND_LINK_DEV}/text/${message.guild.id}/get-all`);
+  const res = await axios.get(`${process.env.BACKEND_LINK_DEV}/text/${message.guild.id}/list-all`);
 
   textCommandFound = res.data.textCommands.find(
     (textCommand) => `${prefix}${textCommand.tag}` === message.content
