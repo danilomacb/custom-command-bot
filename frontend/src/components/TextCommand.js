@@ -30,7 +30,7 @@ function TextCommand({ discordServer }) {
               Add
             </button>
           ) : null}
-          <TextCommandList discordServerId={discordServerId} />
+          <TextCommandList discordServerId={discordServerId} memberLogged={memberLogged} />
         </>
       ) : (
         <>
