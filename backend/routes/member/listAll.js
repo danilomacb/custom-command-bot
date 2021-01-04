@@ -2,13 +2,13 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function listAll(req, res) {
-  const { discordServer, member } = res.locals;
+  const { discordServer, member, discordUser } = res.locals;
 
   if (!member.superAdm) {
     errorHandler(
       res,
       401,
-      `Permission denied, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied, this user isn't a super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }

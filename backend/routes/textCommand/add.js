@@ -2,7 +2,7 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function add(req, res) {
-  const { member, discordServer } = res.locals;
+  const { member, discordServer, discordUser } = res.locals;
   const { discordUserId } = member;
   const { tag, message } = req.body;
 
@@ -10,7 +10,7 @@ async function add(req, res) {
     errorHandler(
       res,
       401,
-      `Permission denied, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}}`
+      `Permission denied, this user isn't an admin or super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }

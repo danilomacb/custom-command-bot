@@ -20,7 +20,7 @@ async function remove(req, res) {
     errorHandler(
       res,
       401,
-      `Permission denied, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, this user isn't a super admin or the admin who created this command on this discord server, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
