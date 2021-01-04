@@ -97,10 +97,12 @@ client.on("guildMemberRemove", async (member) => {
   if (member.user.bot) return;
 
   try {
-    await axios.delete(
+    const res = await axios.delete(
       `${process.env.BACKEND_LINK_DEV}/member/${member.guild.id}/remove/${member.user.id}`,
       { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }
     );
+
+    console.log(`\n${res.data.message}`);
   } catch (err) {
     errorHandler(err);
   }
