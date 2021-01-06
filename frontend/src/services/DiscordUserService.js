@@ -7,11 +7,17 @@ export async function listOneDiscordUser(tokenType, token) {
     });
 
     if (!res.ok) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("tokenType");
+
       alert("Fail to login");
       return;
     }
   } catch (err) {
     alert("Fail to login");
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenType");
+
     console.error("Fail to list user\n", err);
     return;
   }
