@@ -42,11 +42,17 @@ function TextCommandForm({ discordServerId }) {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <input type="text" ref={(input) => (tagInput = input)} defaultValue={textCommandTag} />
+        <input
+          type="text"
+          ref={(input) => (tagInput = input)}
+          defaultValue={textCommandTag}
+          required
+        />
         <textarea
           type="message"
           ref={(textarea) => (messageTextarea = textarea)}
           defaultValue={textCommandMessage}
+          required
         />
         <button type="submit">Send</button>
       </form>
