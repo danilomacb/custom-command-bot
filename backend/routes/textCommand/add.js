@@ -15,6 +15,16 @@ async function add(req, res) {
     return;
   }
 
+  registeredTag = discordServer.textCommands.find((textCommand) => textCommand.tag === tag);
+  if (registeredTag) {
+    errorHandler(
+      res,
+      409,
+      `This command already exists, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+    );
+    return;
+  }
+
   discordServer.textCommands.push({ tag, message, discordUserId });
 
   try {

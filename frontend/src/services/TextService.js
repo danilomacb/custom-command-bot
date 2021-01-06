@@ -9,6 +9,11 @@ export async function addTextCommand(discordServerId, tag, message) {
       body: JSON.stringify({ tag, message }),
     });
 
+    if (res.status === 409) {
+      alert("This command already exists");
+      return;
+    }
+
     if (!res.ok) {
       alert("Fail to add text command");
       return;
@@ -85,7 +90,7 @@ export async function removeTextCommand(discordServerId, textCommandId) {
         headers: {
           "Content-Type": "application/json",
           authorization: `${localStorage.tokenType} ${localStorage.token}`,
-        }
+        },
       }
     );
 
