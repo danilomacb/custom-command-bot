@@ -10,7 +10,7 @@ async function add(req, res) {
     errorHandler(
       res,
       401,
-      `Permission denied, this user isn't an admin or super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, this user isn't an admin or super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -20,7 +20,7 @@ async function add(req, res) {
     errorHandler(
       res,
       409,
-      `This command already exists, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+      `This command already exists, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -33,14 +33,14 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on add text command, save failed, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`,
+      `Error on add text command, save failed, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
       err
     );
     return;

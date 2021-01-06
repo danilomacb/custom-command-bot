@@ -37,7 +37,7 @@ function DiscordServer({ match }) {
   if (discordServer) {
     return (
       <>
-        <h1>{discordServer.name}</h1>
+        <h1>{discordServer.discordServerName}</h1>
         <div className="tabs">
           <button onClick={() => changeTab("text")}>Text</button>
           <button onClick={() => changeTab("image")}>Image</button>

@@ -6,7 +6,7 @@ function listOne(req, res) {
   successHandler(
     res,
     200,
-    `Member listed, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.name}`,
+    `Member listed, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.discordServerName}`,
     { member }
   );
 }

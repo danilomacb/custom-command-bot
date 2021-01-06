@@ -13,7 +13,7 @@ async function add(req, res) {
     errorHandler(
       res,
       500,
-      `Error on add member, find failed, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServerId}`,
+      `Error on add member, find failed, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
       err
     );
   }
@@ -26,13 +26,13 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Member added, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServerId}`
+      `Member added, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`
     );
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on add member, save failed, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.name}, discordServerId: ${discordServerId}`,
+      `Error on add member, save failed, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
       err
     );
   }

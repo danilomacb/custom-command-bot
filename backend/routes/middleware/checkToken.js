@@ -23,7 +23,7 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       401,
-      `Permission denied, user offline, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }
@@ -58,7 +58,7 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       401,
-      `Permission denied, this user isn't a member of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, this user isn't a member of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   }

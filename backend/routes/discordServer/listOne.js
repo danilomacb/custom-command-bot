@@ -6,10 +6,10 @@ async function listOne(req, res) {
   successHandler(
     res,
     200,
-    `One discord server listed, discordServerName: ${discordServer.name}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}`,
+    `One discord server listed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}`,
     {
       discordServer: {
-        name: discordServer.name,
+        discordServerName: discordServer.discordServerName,
         discordServerId: discordServer.discordServerId,
         memberLogged: member,
       },

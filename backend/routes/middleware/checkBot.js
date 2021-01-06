@@ -4,7 +4,7 @@ const errorHandler = require("../../util/errorHandler");
 
 async function checkBot(req, res, next) {
   const { authorization } = req.headers;
-  const { name, discordServerId, members } = req.body;
+  const { discordServerName, discordServerId, members } = req.body;
 
   let bot;
   try {
@@ -15,7 +15,7 @@ async function checkBot(req, res, next) {
     errorHandler(
       res,
       500,
-      `Error on check bot, request failed, discordServerName: ${name}, discordServerId: ${discordServerId}`,
+      `Error on check bot, request failed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       err
     );
   }
@@ -24,7 +24,7 @@ async function checkBot(req, res, next) {
     errorHandler(
       res,
       500,
-      `Permission denied, discordServerName: ${name}, discordServerId: ${discordServerId}}`
+      `Permission denied, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}}`
     );
   }
 

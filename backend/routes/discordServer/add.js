@@ -3,9 +3,9 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function add(req, res) {
-  const { name, discordServerId, members } = req.body;
+  const { discordServerName, discordServerId, members } = req.body;
 
-  const newDiscordServer = new DiscordServer({ name, discordServerId });
+  const newDiscordServer = new DiscordServer({ discordServerName, discordServerId });
 
   newDiscordServer.members.push(...members);
 
@@ -15,7 +15,7 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Discord server added, discordServerName: ${name}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
+      `Discord server added, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
         members
       )}`
     );
@@ -24,7 +24,7 @@ async function add(req, res) {
     errorHandler(
       res,
       500,
-      `Error on add discord server, save failed, discordServerName: ${name}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
+      `Error on add discord server, save failed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
         members
       )}`,
       err

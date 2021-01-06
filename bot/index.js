@@ -44,7 +44,7 @@ client.on("guildCreate", async (guild) => {
     const res = await axios.post(
       `${process.env.BACKEND_LINK_DEV}/discord-server/add`,
       {
-        name: guild.name,
+        discordServerName: guild.name,
         discordServerId: guild.id,
         members,
       },
