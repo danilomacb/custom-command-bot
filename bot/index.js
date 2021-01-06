@@ -26,9 +26,9 @@ client.on("guildCreate", async (guild) => {
     if (!member.user.bot) {
       let discordUser = {
         discordUserId: member.user.id,
-        discordUsername: member.user.username,
-        discordDiscriminator: member.user.discriminator,
-        discordAvatar: member.user.avatar,
+        discordUserUsername: member.user.username,
+        discordUserDiscriminator: member.user.discriminator,
+        discordUserAvatar: member.user.avatar,
       };
 
       if (member.user.id === guild.ownerID) {
@@ -79,9 +79,9 @@ client.on("guildMemberAdd", async (member) => {
       {
         member: {
           discordUserId: member.user.id,
-          discordUsername: member.user.username,
-          discordDiscriminator: member.user.discriminator,
-          discordAvatar: member.user.avatar,
+          discordUserUsername: member.user.username,
+          discordUserDiscriminator: member.user.discriminator,
+          discordUserAvatar: member.user.avatar,
         },
       },
       { headers: { authorization: `Bot ${process.env.DISCORD_TOKEN}` } }

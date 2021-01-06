@@ -14,14 +14,14 @@ function MembersList({ discordServer }) {
       <>
         {membersList.map((member) => (
           <div key={member.discordUserId}>
-            {member.discordAvatar ? (
+            {member.discordUserAvatar ? (
               <img
-                src={`https://cdn.discordapp.com/avatars/${member.discordUserId}/${member.discordAvatar}.png`}
+                src={`https://cdn.discordapp.com/avatars/${member.discordUserId}/${member.discordUserAvatar}.png`}
                 alt="avatar"
               />
             ) : null}
             <div key={member.discordUserId}>
-              {member.discordUsername}#{member.discordDiscriminator}
+              {member.discordUserUsername}#{member.discordUserDiscriminator}
             </div>
           </div>
         ))}

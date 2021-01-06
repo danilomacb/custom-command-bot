@@ -33,14 +33,14 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
     );
     return;
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on add text command, save failed, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUsername}, memberDiscriminator: ${member.discordDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      `Error on add text command, save failed, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
       err
     );
     return;
