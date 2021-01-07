@@ -3,7 +3,7 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const axios = require("axios");
 
-const { prefix } = require("./config.json");
+const { prefix } = require("../config.json");
 const errorHandler = require("./util/errorHandler");
 const commands = require("./commands");
 

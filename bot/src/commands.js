@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const { prefix } = require("./config.json");
+const { prefix } = require("../config.json");
 
 async function commands(message) {
   const res = await axios.get(`${process.env.BACKEND_LINK_DEV}/text/${message.guild.id}/list-all`);
