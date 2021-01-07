@@ -1,14 +1,12 @@
 const getDate = require("./getDate");
 
-function errorHandler(res, status, msg, err) {
-  const dateMsg = `[${getDate()}] ${msg}`;
-
-  console.error(`\n${dateMsg}`);
+function errorHandler(res, status, log, message, err) {
+  console.error(`\n[${getDate()}] ${log}`);
   console.trace();
 
   if (err) console.error(err);
 
-  res.status(status).json({ message: dateMsg });
+  res.status(status).json({ message });
 }
 
 module.exports = errorHandler;

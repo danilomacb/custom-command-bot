@@ -8,7 +8,8 @@ async function listAll(req, res) {
     errorHandler(
       res,
       401,
-      `Permission denied, this user isn't a super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, this user isn't a super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Permission denied"
     );
     return;
   }

@@ -28,6 +28,7 @@ async function add(req, res) {
       `Error on add discord server, save failed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
         members
       )}`,
+      "Error on add discord server",
       err
     );
     return;

@@ -14,6 +14,7 @@ async function checkToken(req, res, next) {
       res,
       500,
       `Error on check token, find failed, discordServerId: ${discordServerId}`,
+      "Error on check token",
       err
     );
     return;
@@ -23,7 +24,8 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       401,
-      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Permission denied"
     );
     return;
   }
@@ -36,6 +38,7 @@ async function checkToken(req, res, next) {
       res,
       401,
       `Error on check token, request failed, discordServerId: ${discordServerId}`,
+      "Error on check token",
       err
     );
     return;
@@ -45,7 +48,8 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       404,
-      `Error on check token, discord server not found, discordServerId: ${discordServerId}`
+      `Error on check token, discord server not found, discordServerId: ${discordServerId}`,
+      "Error on check token"
     );
     return;
   }
@@ -58,7 +62,8 @@ async function checkToken(req, res, next) {
     errorHandler(
       res,
       401,
-      `Permission denied, this user isn't a member of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Permission denied, this user isn't a member of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Permission denied"
     );
     return;
   }

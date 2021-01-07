@@ -15,7 +15,7 @@ async function listOneDiscordUser(req, res) {
     );
     return;
   } catch (err) {
-    errorHandler(res, 401, "Error on login, request failed", err);
+    errorHandler(res, 401, "Error on login, request failed", "Error on login", err);
     return;
   }
 }

@@ -13,6 +13,7 @@ async function remove(req, res) {
       res,
       500,
       `Error on remove member, find failed, discordServerId: ${discordServerId}, discordUserId: ${discordUserId}`,
+      "Error on remove member",
       err
     );
   }
@@ -35,6 +36,7 @@ async function remove(req, res) {
       res,
       500,
       `Error on remove member, save failed, discordServerId: ${discordServerId}, discordServerName: ${discordServer.discordServerName}, discordUserId: ${discordUserId}`,
+      "Error on remove member",
       err
     );
   }

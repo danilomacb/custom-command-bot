@@ -11,7 +11,13 @@ async function listAllDiscordGuilds(req, res) {
     });
     return;
   } catch (err) {
-    errorHandler(res, 401, "Error on list all discord guilds, request failed", err);
+    errorHandler(
+      res,
+      401,
+      "Error on list all discord guilds, request failed",
+      "Error on list all discord guilds",
+      err
+    );
     return;
   }
 }

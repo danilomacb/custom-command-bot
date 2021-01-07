@@ -13,6 +13,7 @@ async function remove(req, res) {
       res,
       500,
       `Error on remove discord server, find failed, discordServerId: ${req.params.discordServerId}`,
+      "Error on remove discord server",
       err
     );
     return;
@@ -25,6 +26,7 @@ async function remove(req, res) {
       res,
       500,
       `Error on remove discord server, delete failed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${req.params.discordServerId}`,
+      "Error on remove discord server",
       err
     );
     return;

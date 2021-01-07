@@ -1,9 +1,7 @@
 const getDate = require("./getDate");
 
 function successHandler(res, status, log, message, data) {
-  const dateLog = `[${getDate()}] ${log}`
-
-  console.log(`\n${dateLog}`);
+  console.log(`\n[${getDate()}] ${log}`);
 
   if (data) {
     res.status(status).json({ data, message });

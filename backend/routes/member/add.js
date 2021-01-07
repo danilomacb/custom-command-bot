@@ -14,6 +14,7 @@ async function add(req, res) {
       res,
       500,
       `Error on add member, find failed, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      "Error on add member",
       err
     );
   }
@@ -34,6 +35,7 @@ async function add(req, res) {
       res,
       500,
       `Error on add member, save failed, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      "Error on add member",
       err
     );
   }

@@ -15,7 +15,8 @@ async function update(req, res) {
         errorHandler(
           res,
           401,
-          `Permission denied, this user isn't a super admin or the admin who created this command on this discord server, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+          `Permission denied, this user isn't a super admin or the admin who created this command on this discord server, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+          "Permission denied"
         );
         return;
       }
@@ -36,6 +37,7 @@ async function update(req, res) {
       res,
       500,
       `Error on update text command, save failed, tag: ${tag}, message: ${message}, textCommandId: ${textCommandId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Error on update",
       err
     );
   }
