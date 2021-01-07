@@ -27,7 +27,8 @@ async function remove(req, res) {
     successHandler(
       res,
       200,
-      `Member removed, discordServerId: ${discordServerId}, discordServerName: ${discordServer.discordServerName}, discordUserId: ${discordUserId}`
+      `Member removed, discordServerId: ${discordServerId}, discordServerName: ${discordServer.discordServerName}, discordUserId: ${discordUserId}`,
+      "Member removed"
     );
   } catch (err) {
     errorHandler(

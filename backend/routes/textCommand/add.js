@@ -33,7 +33,8 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Text command added"
     );
     return;
   } catch (err) {

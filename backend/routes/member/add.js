@@ -26,7 +26,8 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Member added, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`
+      `Member added, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      "Member added"
     );
   } catch (err) {
     errorHandler(

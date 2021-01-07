@@ -17,6 +17,7 @@ async function listAll(req, res) {
     res,
     200,
     `All members listed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}`,
+    "All members listed",
     {
       members: discordServer.members,
     }

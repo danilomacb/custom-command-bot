@@ -17,7 +17,8 @@ async function add(req, res) {
       201,
       `Discord server added, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
         members
-      )}`
+      )}`,
+      "Discord server added"
     );
     return;
   } catch (err) {

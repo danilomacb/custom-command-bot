@@ -10,6 +10,7 @@ async function listOneDiscordUser(req, res) {
       res,
       200,
       `User logged in, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}`,
+      "Successful login",
       { discordUser: discordUser.data }
     );
     return;

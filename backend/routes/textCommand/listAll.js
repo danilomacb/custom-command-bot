@@ -7,6 +7,7 @@ async function listAll(req, res) {
     res,
     200,
     `All text commands listed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}`,
+    "All text commands listed",
     {
       textCommands: discordServer.textCommands,
     }

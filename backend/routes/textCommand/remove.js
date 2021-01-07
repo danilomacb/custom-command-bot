@@ -31,7 +31,8 @@ async function remove(req, res) {
     successHandler(
       res,
       200,
-      `Text command removed, textCommandId: ${textCommandId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Text command removed, textCommandId: ${textCommandId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Text command removed"
     );
   } catch (err) {
     errorHandler(

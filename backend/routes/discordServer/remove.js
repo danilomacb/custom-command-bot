@@ -33,7 +33,8 @@ async function remove(req, res) {
   successHandler(
     res,
     200,
-    `Discord server removed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${req.params.discordServerId}`
+    `Discord server removed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${req.params.discordServerId}`,
+    "Discord server removed"
   );
   return;
 }

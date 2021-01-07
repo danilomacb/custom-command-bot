@@ -28,7 +28,8 @@ async function update(req, res) {
     successHandler(
       res,
       200,
-      `Text command updated, tag: ${tag}, message: ${message}, textCommandId: ${textCommandId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`
+      `Text command updated, tag: ${tag}, message: ${message}, textCommandId: ${textCommandId}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Text command updated"
     );
   } catch (err) {
     errorHandler(
