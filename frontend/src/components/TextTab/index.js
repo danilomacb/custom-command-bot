@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import "../../styles/textCommand.scss";
+import "../../styles/textTab.scss";
 import { TextCommandContext } from "../../context/TextCommandContext";
 import TextCommandList from "./TextCommandList";
 import TextCommandForm from "./TextCommandForm";
