@@ -8,18 +8,26 @@ export async function listOneMember(discordServerId) {
       },
     });
   } catch (err) {
+    alert("Fail to list discord server member");
     console.error("Fail to list discord server member\n", err);
     return;
   }
 
+  let jsonRes;
   try {
-    const jsonRes = await res.json();
-
-    return jsonRes.data.members;
+    jsonRes = await res.json();
   } catch (err) {
+    alert("Fail to list discord server member");
     console.error("Fail to convert response to json\n", err);
     return;
   }
+
+  if (!res.ok) {
+    alert(jsonRes.message);
+    return;
+  }
+
+  return jsonRes.data.members;
 }
 
 export async function listAllMembers(discordServerId) {
@@ -32,16 +40,24 @@ export async function listAllMembers(discordServerId) {
       },
     });
   } catch (err) {
+    alert("Fail to list discord server members");
     console.error("Fail to list discord server members\n", err);
     return;
   }
 
+  let jsonRes;
   try {
-    const jsonRes = await res.json();
-
-    return jsonRes.data.members;
+    jsonRes = await res.json();
   } catch (err) {
+    alert("Fail to list discord server members");
     console.error("Fail to convert response to json\n", err);
     return;
   }
+
+  if (!res.ok) {
+    alert(jsonRes.message);
+    return;
+  }
+
+  return jsonRes.data.members;
 }

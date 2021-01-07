@@ -5,30 +5,34 @@ export async function listOneDiscordUser(tokenType, token) {
       method: "GET",
       headers: { authorization: `${tokenType} ${token}` },
     });
-
-    if (!res.ok) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("tokenType");
-
-      alert("Fail to login");
-      return;
-    }
   } catch (err) {
-    alert("Fail to login");
     localStorage.removeItem("token");
     localStorage.removeItem("tokenType");
 
+    alert("Fail to login");
     console.error("Fail to list user\n", err);
     return;
   }
 
+  let jsonRes;
   try {
-    const jsonRes = await res.json();
-
-    return jsonRes.data.discordUser;
+    jsonRes = await res.json();
   } catch (err) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenType");
+
     alert("Fail to login");
-    console.error("Fail to covert response to json\n");
+    console.error("Fail to covert response to json\n", err);
     return;
   }
+
+  if (!res.ok) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenType");
+
+    alert(jsonRes.message);
+    return;
+  }
+
+  return jsonRes.data.discordUser;
 }

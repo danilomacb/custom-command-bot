@@ -9,29 +9,24 @@ export async function listOneDiscordServer(discordServerId) {
         authorization: `${localStorage.tokenType} ${localStorage.token}`,
       },
     });
-
-    if (res.status === 404) {
-      alert("This discord server isn't registered");
-      history.push("/");
-      return;
-    }
-
-    if (res.status !== 200) {
-      alert("Fail to load discord server");
-      history.push("/");
-      return;
-    }
   } catch (err) {
     console.error("Fail to list discord server\n", err);
     return;
   }
 
+  let jsonRes;
   try {
-    const jsonRes = await res.json();
-
-    return jsonRes.data.discordServer;
+    jsonRes = await res.json();
   } catch (err) {
     console.error("Fail to convert response to json\n", err);
     return;
   }
+
+  if (!res.ok) {
+    alert(jsonRes.message);
+    history.push("/");
+    return;
+  }
+
+  return jsonRes.data.discordServer;
 }
