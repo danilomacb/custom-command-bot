@@ -3,6 +3,7 @@ import queryString from "query-string";
 
 import { DiscordUserContext } from "../../context/DiscordUserContext";
 import { listOneDiscordUser } from "../../services/DiscordUserService";
+import history from "../../history";
 
 function Login() {
   const { discordUser, setDiscordUser } = useContext(DiscordUserContext);
@@ -20,6 +21,8 @@ function Login() {
 
       localStorage.setItem("tokenType", tokenType);
       localStorage.setItem("token", token);
+
+      history.push("/");
     }
 
     if ((!discordUser || discordUser === "guest") && tokenType && token) {
