@@ -49,7 +49,7 @@ async function checkToken(req, res, next) {
       res,
       404,
       `Error on check token, discord server not found, discordServerId: ${discordServerId}`,
-      "Error on check token"
+      "Discord server not found"
     );
     return;
   }
