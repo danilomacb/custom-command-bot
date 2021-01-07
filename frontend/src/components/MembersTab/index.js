@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { listAllMembers } from "../services/MemberService";
+import { listAllMembers } from "../../services/MemberService";
 
-function MembersList({ discordServer }) {
+function MembersTab({ discordServer }) {
   const [membersList, setMembersList] = useState(null);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ function MembersList({ discordServer }) {
   return <h1>Loading Members List...</h1>;
 }
 
-export default MembersList;
+export default MembersTab;

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
-import "../styles/textCommand.scss";
-import { TextCommandContext } from "../context/TextCommandContext";
+import "../../styles/textCommand.scss";
+import { TextCommandContext } from "../../context/TextCommandContext";
 import TextCommandList from "./TextCommandList";
 import TextCommandForm from "./TextCommandForm";
 
-function TextCommand({ discordServer }) {
+function TextTab({ discordServer }) {
   const { memberLogged, discordServerId } = discordServer;
 
   const {
@@ -42,4 +42,4 @@ function TextCommand({ discordServer }) {
   );
 }
 
-export default TextCommand;
+export default TextTab;

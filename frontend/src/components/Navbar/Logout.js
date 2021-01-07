@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { DiscordUserContext } from "../context/DiscordUserContext";
-import history from "../history";
+import { DiscordUserContext } from "../../context/DiscordUserContext";
+import history from "../../history";
 
 function Logout() {
   const { setDiscordUser } = useContext(DiscordUserContext);

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import "../styles/form.scss";
-import { TextCommandContext } from "../context/TextCommandContext";
-import { addTextCommand, listAllTextCommands, updateTextCommand } from "../services/TextService";
+import "../../styles/form.scss";
+import { TextCommandContext } from "../../context/TextCommandContext";
+import { addTextCommand, listAllTextCommands, updateTextCommand } from "../../services/TextService";
 
 function TextCommandForm({ discordServerId }) {
   const {

@@ -5,8 +5,8 @@ import { DiscordUserContext } from "../context/DiscordUserContext";
 import history from "../history";
 import { listOneDiscordServer } from "../services/DiscordServerService";
 import TextCommandProvider from "../context/TextCommandContext";
-import TextCommand from "../components/TextCommand";
-import MembersList from "../components/MembersList";
+import TextTab from "../components/TextTab";
+import MembersTab from "../components/MembersTab";
 
 function DiscordServer({ match }) {
   const { discordServerId } = match.params;
@@ -48,12 +48,12 @@ function DiscordServer({ match }) {
 
         {tab === "text" ? (
           <TextCommandProvider>
-            <TextCommand discordServer={discordServer} />
+            <TextTab discordServer={discordServer} />
           </TextCommandProvider>
         ) : tab === "image" ? (
           <div>Images</div>
         ) : (
-          <MembersList discordServer={discordServer} />
+          <MembersTab discordServer={discordServer} />
         )}
       </>
     );

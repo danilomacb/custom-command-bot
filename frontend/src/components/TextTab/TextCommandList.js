@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 
-import { TextCommandContext } from "../context/TextCommandContext";
-import { listAllTextCommands, removeTextCommand } from "../services/TextService";
+import { TextCommandContext } from "../../context/TextCommandContext";
+import { listAllTextCommands, removeTextCommand } from "../../services/TextService";
 
 function TextCommandList({ discordServerId, memberLogged }) {
   const {

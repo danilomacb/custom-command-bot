@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import "../styles/navbar.scss";
-import { DiscordUserContext } from "../context/DiscordUserContext";
+import "../../styles/navbar.scss";
+import { DiscordUserContext } from "../../context/DiscordUserContext";
 import NavUser from "./NavUser";
 import Login from "./Login";
 import Logout from "./Logout";
