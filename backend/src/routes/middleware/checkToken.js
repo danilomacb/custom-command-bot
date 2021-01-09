@@ -54,11 +54,11 @@ async function checkToken(req, res, next) {
     return;
   }
 
-  const memberFound = discordServer.members.find(
+  const discordUserMember = discordServer.members.find(
     (member) => member.discordUserId === discordUser.data.id
   );
 
-  if (!memberFound) {
+  if (!discordUserMember) {
     errorHandler(
       res,
       401,
@@ -69,8 +69,7 @@ async function checkToken(req, res, next) {
   }
 
   res.locals.discordServer = discordServer;
-  res.locals.member = memberFound;
-  res.locals.discordUser = discordUser;
+  res.locals.memberLogged = discordUserMember;
 
   next();
 }

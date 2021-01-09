@@ -6,10 +6,12 @@ async function listOneDiscordUser(req, res) {
   try {
     const discordUser = await listOneDiscordUserReq(req.headers.authorization);
 
+    const { username, discriminator, id } = discordUser.data;
+
     successHandler(
       res,
       200,
-      `User logged in, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}`,
+      `User logged in, discordUserUsername: ${username}, discordUserDiscriminator: ${discriminator}, discordUserId: ${id}`,
       "Successful login",
       { discordUser: discordUser.data }
     );

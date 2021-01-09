@@ -22,20 +22,22 @@ async function remove(req, res) {
     (member) => member.discordUserId !== discordUserId
   );
 
+  const { discordServerName } = discordServer;
+
   try {
     await discordServer.save();
 
     successHandler(
       res,
       200,
-      `Member removed, discordServerId: ${discordServerId}, discordServerName: ${discordServer.discordServerName}, discordUserId: ${discordUserId}`,
+      `Member removed, discordServerId: ${discordServerId}, discordServerName: ${discordServerName}, discordUserId: ${discordUserId}`,
       "Member removed"
     );
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on remove member, save failed, discordServerId: ${discordServerId}, discordServerName: ${discordServer.discordServerName}, discordUserId: ${discordUserId}`,
+      `Error on remove member, save failed, discordServerId: ${discordServerId}, discordServerName: ${discordServerName}, discordUserId: ${discordUserId}`,
       "Error on remove member",
       err
     );

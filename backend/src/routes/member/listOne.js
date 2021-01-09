@@ -1,14 +1,16 @@
 const successHandler = require("../../util/successHandler");
 
 function listOne(req, res) {
-  const { discordServer, member } = res.locals;
+  const { discordServer, memberLogged } = res.locals;
+  const { discordUserUsername, discordUserDiscriminator, discordUserId } = memberLogged;
+  const { discordServerName, discordServerId } = discordServer;
 
   successHandler(
     res,
     200,
-    `Member listed, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerId: ${discordServer.discordServerId}, discordServerName: ${discordServer.discordServerName}`,
+    `Member listed, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId, ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
     "Member listed",
-    { member }
+    { memberLogged }
   );
 }
 

@@ -3,21 +3,25 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function remove(req, res) {
+  const { discordServerId } = req.params;
+
   let discordServer;
   try {
     discordServer = await DiscordServer.findOne({
-      discordServerId: req.params.discordServerId,
+      discordServerId: discordServerId,
     });
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on remove discord server, find failed, discordServerId: ${req.params.discordServerId}`,
+      `Error on remove discord server, find failed, discordServerId: ${discordServerId}`,
       "Error on remove discord server",
       err
     );
     return;
   }
+
+  const { discordServerName } = discordServer;
 
   try {
     await discordServer.delete();
@@ -25,7 +29,7 @@ async function remove(req, res) {
     errorHandler(
       res,
       500,
-      `Error on remove discord server, delete failed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${req.params.discordServerId}`,
+      `Error on remove discord server, delete failed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "Error on remove discord server",
       err
     );
@@ -35,7 +39,7 @@ async function remove(req, res) {
   successHandler(
     res,
     200,
-    `Discord server removed, discordServerName: ${discordServer.discordServerName}, discordServerId: ${req.params.discordServerId}`,
+    `Discord server removed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
     "Discord server removed"
   );
   return;

@@ -2,26 +2,27 @@ const successHandler = require("../../util/successHandler");
 const errorHandler = require("../../util/errorHandler");
 
 async function add(req, res) {
-  const { member, discordServer, discordUser } = res.locals;
-  const { discordUserId } = member;
+  const { memberLogged, discordServer } = res.locals;
   const { tag, message } = req.body;
+  const { discordUserUsername, discordUserDiscriminator, discordUserId } = memberLogged;
+  const { discordServerName, discordServerId, textCommands } = discordServer;
 
-  if (!member.superAdm && !member.adm) {
+  if (!memberLogged.superAdm && !memberLogged.adm) {
     errorHandler(
       res,
       401,
-      `Permission denied, this user isn't an admin or super admin of this discord server, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      `Permission denied, this user isn't an admin or super admin of this discord server, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "Permission denied"
     );
     return;
   }
 
-  registeredTag = discordServer.textCommands.find((textCommand) => textCommand.tag === tag);
+  registeredTag = textCommands.find((textCommand) => textCommand.tag === tag);
   if (registeredTag) {
     errorHandler(
       res,
       409,
-      `This command already exists, discordUserUsername: ${discordUser.data.username}, discordUserDiscriminator: ${discordUser.data.discriminator}, discordUserId: ${discordUser.data.id}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      `This command already exists, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "This command already exists"
     );
     return;
@@ -35,7 +36,7 @@ async function add(req, res) {
     successHandler(
       res,
       201,
-      `Text command added, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      `Text command added, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "Text command added"
     );
     return;
@@ -43,7 +44,7 @@ async function add(req, res) {
     errorHandler(
       res,
       500,
-      `Error on add text command, save failed, tag: ${tag}, message: ${message}, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId, ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      `Error on add text command, save failed, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "Error on add text command",
       err
     );

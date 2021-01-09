@@ -5,6 +5,7 @@ const errorHandler = require("../../util/errorHandler");
 async function add(req, res) {
   const { discordServerId } = req.params;
   const { member } = req.body;
+  const { discordUserUsername, discordUserDiscriminator, discordUserId } = member;
 
   let discordServer;
   try {
@@ -13,7 +14,7 @@ async function add(req, res) {
     errorHandler(
       res,
       500,
-      `Error on add member, find failed, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      `Error on add member, find failed, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerId: ${discordServerId}`,
       "Error on add member",
       err
     );
@@ -21,20 +22,22 @@ async function add(req, res) {
 
   discordServer.members.push(member);
 
+  const { discordServerName } = discordServer;
+
   try {
     await discordServer.save();
 
     successHandler(
       res,
       201,
-      `Member added, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      `Member added, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "Member added"
     );
   } catch (err) {
     errorHandler(
       res,
       500,
-      `Error on add member, save failed, memberUsername: ${member.discordUserUsername}, memberDiscriminator: ${member.discordUserDiscriminator}, memberId: ${member.discordUserId}, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      `Error on add member, save failed, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
       "Error on add member",
       err
     );
