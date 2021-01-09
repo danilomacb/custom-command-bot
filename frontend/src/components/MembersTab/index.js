@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 
 import "../../styles/membersTab.scss";
-import { listAllMembers } from "../../services/MemberService";
+import { listAllMembers, updateMember } from "../../services/MemberService";
 
 function MembersTab({ discordServer }) {
+  const { discordServerId } = discordServer;
+
   const [membersList, setMembersList] = useState(null);
 
   useEffect(() => {
-    listAllMembers(discordServer.discordServerId).then((res) => setMembersList(res));
-  }, [discordServer.discordServerId]);
+    listAllMembers(discordServerId).then((res) => setMembersList(res));
+  }, [discordServerId]);
 
-  function promote() {
-    console.log("promoted");
+  async function promotion(e, member) {
+    await updateMember(discordServerId, member.discordUserId, e.target.name);
+
+    const members = await listAllMembers(discordServerId);
+    setMembersList(members);
   }
 
   if (membersList) {
@@ -28,9 +33,19 @@ function MembersTab({ discordServer }) {
             <div>
               {member.discordUserUsername}#{member.discordUserDiscriminator}
             </div>
-            <input type="checkbox" name="superAdm" checked={member.superAdm} onChange={promote} />
+            <input
+              type="checkbox"
+              name="superAdm"
+              checked={member.superAdm}
+              onChange={(e) => promotion(e, member)}
+            />
             <label htmlFor="superAdm">Super Adm</label>
-            <input type="checkbox" name="adm" checked={member.adm} onChange={promote} />
+            <input
+              type="checkbox"
+              name="adm"
+              checked={member.adm}
+              onChange={(e) => promotion(e, member)}
+            />
             <label htmlFor="adm">Adm</label>
           </div>
         ))}

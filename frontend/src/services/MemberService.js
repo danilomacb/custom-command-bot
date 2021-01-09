@@ -61,3 +61,29 @@ export async function listAllMembers(discordServerId) {
 
   return jsonRes.data.members;
 }
+
+export async function updateMember(discordServerId, discordUserIdToUpdate, role) {
+  let res;
+  try {
+    res = await fetch(
+      `http://localhost:3001/member/${discordServerId}/update/${discordUserIdToUpdate}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${localStorage.tokenType} ${localStorage.token}`,
+        },
+        body: JSON.stringify({ role }),
+      }
+    );
+  } catch (err) {
+    alert("Fail to promote member");
+    console.error("Fail to promote member\n", err);
+    return;
+  }
+
+  if (!res.ok) {
+    alert(jsonRes.message);
+    return;
+  }
+}
