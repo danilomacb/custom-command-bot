@@ -1,0 +1,30 @@
+{
+  "name": "custom-command-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danilomacb/custom-command-bot.git"
+  },
+  "keywords": [],
+  "author": "danilomacb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danilomacb/custom-command-bot/issues"
+  },
+  "homepage": "https://github.com/danilomacb/custom-command-bot#readme",
+  "devDependencies": {
+    "husky": "^4.3.7",
+    "prettier": "2.2.1",
+    "pretty-quick": "^3.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
