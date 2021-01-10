@@ -82,6 +82,15 @@ export async function updateMember(discordServerId, discordUserIdToUpdate, role)
     return;
   }
 
+  let jsonRes;
+  try {
+    jsonRes = await res.json();
+  } catch (err) {
+    alert("Fail to promote member");
+    console.error("Fail to convert response to json\n", err);
+    return;
+  }
+
   if (!res.ok) {
     alert(jsonRes.message);
     return;
