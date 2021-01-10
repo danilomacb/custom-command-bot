@@ -33,11 +33,13 @@ function MembersTab({ discordServer }) {
             <div>
               {member.discordUserUsername}#{member.discordUserDiscriminator}
             </div>
+            {member.discordServerOwner ? <strong>(Owner)</strong> : null}
             <input
               type="checkbox"
               name="superAdm"
               checked={member.superAdm}
               onChange={(e) => promotion(e, member)}
+              disabled={member.discordServerOwner}
             />
             <label htmlFor="superAdm">Super Adm</label>
             <input
@@ -45,6 +47,7 @@ function MembersTab({ discordServer }) {
               name="adm"
               checked={member.adm}
               onChange={(e) => promotion(e, member)}
+              disabled={member.discordServerOwner}
             />
             <label htmlFor="adm">Adm</label>
           </div>
