@@ -34,6 +34,7 @@ client.on("guildCreate", async (guild) => {
       if (member.user.id === guild.ownerID) {
         discordUser.adm = true;
         discordUser.superAdm = true;
+        discordUser.discordServerOwner = true;
       }
 
       members.push(discordUser);
