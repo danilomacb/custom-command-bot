@@ -20,6 +20,16 @@ async function update(req, res) {
 
   discordServer.members.map((member) => {
     if (member.discordUserId === discordUserIdToUpdate) {
+      if (member.discordServerOwner) {
+        errorHandler(
+          res,
+          401,
+          `The roles from the discord server owner can not be changed, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+          "The roles from the discord server owner can not be changed"
+        );
+        return;
+      }
+
       if (role === "superAdm") {
         if (!member.superAdm && !member.adm) {
           member.adm = true;
