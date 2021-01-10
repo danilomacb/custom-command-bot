@@ -9,6 +9,7 @@ const DiscordServerSchema = new mongoose.Schema({
       discordUserUsername: { type: String, required: true },
       discordUserDiscriminator: { type: String, required: true },
       discordUserAvatar: { type: String, required: false },
+      discordServerOwner: { type: Boolean, default: false },
       adm: { type: Boolean, default: false },
       superAdm: { type: Boolean, default: false },
     },
