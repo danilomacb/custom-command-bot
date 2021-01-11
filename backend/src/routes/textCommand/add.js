@@ -27,6 +27,26 @@ async function add(req, res) {
     return;
   }
 
+  if (tag.length > process.env.MAX_TAG_LENGTH) {
+    errorHandler(
+      res,
+      400,
+      `Error on add text command, tag too long, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+      "Tag too long"
+    );
+    return;
+  }
+
+  if (message.length > process.env.MAX_MESSAGE_LENGTH) {
+    errorHandler(
+      res,
+      400,
+      `Error on add text command, message too long, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+      "Message too long"
+    );
+    return;
+  }
+
   registeredTag = textCommands.find((textCommand) => textCommand.tag === tag);
   if (registeredTag) {
     errorHandler(

@@ -18,6 +18,26 @@ async function update(req, res) {
     return;
   }
 
+  if (tag.length > process.env.MAX_TAG_LENGTH) {
+    errorHandler(
+      res,
+      400,
+      `Error on update text command, tag too long, tag: ${tag}, message: ${message}, textCommandIdToUpdate: ${textCommandIdToUpdate}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+      "Tag too long"
+    );
+    return;
+  }
+
+  if (message.length > process.env.MAX_MESSAGE_LENGTH) {
+    errorHandler(
+      res,
+      400,
+      `Error on update text command, message too long, tag: ${tag}, message: ${message}, textCommandIdToUpdate: ${textCommandIdToUpdate}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+      "Message too long"
+    );
+    return;
+  }
+
   const textCommandToUpdate = discordServer.textCommands.find(
     (textCommand) => textCommand.id === textCommandIdToUpdate
   );
