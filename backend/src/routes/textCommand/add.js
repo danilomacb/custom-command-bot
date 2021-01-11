@@ -17,6 +17,16 @@ async function add(req, res) {
     return;
   }
 
+  if (!tag || !message) {
+    errorHandler(
+      res,
+      400,
+      `Error on add text command, empty field, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+      "Empty field"
+    );
+    return;
+  }
+
   registeredTag = textCommands.find((textCommand) => textCommand.tag === tag);
   if (registeredTag) {
     errorHandler(
