@@ -1,6 +1,6 @@
 const DiscordServer = require("../../models/DiscordServer");
-const successHandler = require("../../util/successHandler");
-const errorHandler = require("../../util/errorHandler");
+const successHandler = require("../../handlers/successHandler");
+const errorHandler = require("../../handlers/errorHandler");
 
 async function add(req, res) {
   const { discordServerId } = req.params;

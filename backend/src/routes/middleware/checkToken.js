@@ -1,5 +1,5 @@
 const { listOneDiscordUserReq } = require("../../services/discordApiService");
-const errorHandler = require("../../util/errorHandler");
+const errorHandler = require("../../handlers/errorHandler");
 const DiscordServer = require("../../models/DiscordServer");
 
 async function checkToken(req, res, next) {

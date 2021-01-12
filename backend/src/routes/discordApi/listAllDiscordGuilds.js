@@ -1,5 +1,5 @@
 const { listAllDiscordGuildsReq } = require("../../services/discordApiService");
-const successHandler = require("../../util/successHandler");
+const successHandler = require("../../handlers/successHandler");
 
 async function listAllDiscordGuilds(req, res) {
   const guilds = await listAllDiscordGuildsReq(req.headers.authorization, res);

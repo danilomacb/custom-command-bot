@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const errorHandler = require("../util/errorHandler");
+const errorHandler = require("../handlers/errorHandler");
 
 module.exports = {
   listOneDiscordUserReq: async (authorization, res) => {

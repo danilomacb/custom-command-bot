@@ -1,4 +1,4 @@
-const getDate = require("./getDate");
+const getDate = require("../util/getDate");
 
 function errorHandler(res, status, log, message, err) {
   console.error(`\n[${getDate()}] ${log}`);

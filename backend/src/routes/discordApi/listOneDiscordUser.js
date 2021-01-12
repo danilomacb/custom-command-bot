@@ -1,5 +1,5 @@
 const { listOneDiscordUserReq } = require("../../services/discordApiService");
-const successHandler = require("../../util/successHandler");
+const successHandler = require("../../handlers/successHandler");
 
 async function listOneDiscordUser(req, res) {
   const discordUser = await listOneDiscordUserReq(req.headers.authorization, res);

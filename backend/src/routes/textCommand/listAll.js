@@ -1,4 +1,4 @@
-const successHandler = require("../../util/successHandler");
+const successHandler = require("../../handlers/successHandler");
 
 async function listAll(req, res) {
   const { discordServer, memberLogged } = res.locals;

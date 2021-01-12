@@ -1,4 +1,4 @@
-const getDate = require("./getDate");
+const getDate = require("../util/getDate");
 
 function successHandler(res, status, log, message, data) {
   console.log(`\n[${getDate()}] ${log}`);
