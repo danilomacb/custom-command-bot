@@ -29,7 +29,7 @@ module.exports = {
     } catch (err) {
       errorHandler(
         res,
-        401,
+        500,
         "Error on list all discord guilds, request failed",
         "Error on list all discord guilds",
         err
