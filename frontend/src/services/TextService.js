@@ -100,14 +100,4 @@ export async function removeTextCommand(discordServerId, textCommandId) {
     alert("Fail to remove text command");
     console.error("Fail to remove text command\n", err);
   }
-
-  let jsonRes;
-  try {
-    jsonRes = await res.json();
-  } catch (err) {
-    console.error("Fail to convert response to json\n", err);
-    return;
-  }
-
-  alert(jsonRes.message);
 }
