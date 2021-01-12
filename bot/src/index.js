@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const axios = require("axios");
 
 const { prefix } = require("../config.json");
-const errorHandler = require("./util/errorHandler");
+const errorHandler = require("./handlers/errorHandler");
 const commands = require("./commands");
 
 const client = new Discord.Client();
