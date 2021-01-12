@@ -1,10 +1,20 @@
-const listOneDiscordUserReq = require("../../util/listOneDiscordUserReq");
+const { listOneDiscordUserReq } = require("../../services/discordApiService");
 const errorHandler = require("../../util/errorHandler");
 const DiscordServer = require("../../models/DiscordServer");
 
 async function checkToken(req, res, next) {
   const { authorization } = req.headers;
   const { discordServerId } = req.params;
+
+  if (!authorization) {
+    errorHandler(
+      res,
+      401,
+      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
+      "Permission denied"
+    );
+    return;
+  }
 
   let discordServer;
   try {
@@ -20,30 +30,6 @@ async function checkToken(req, res, next) {
     return;
   }
 
-  if (!authorization) {
-    errorHandler(
-      res,
-      401,
-      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
-      "Permission denied"
-    );
-    return;
-  }
-
-  let discordUser;
-  try {
-    discordUser = await listOneDiscordUserReq(authorization);
-  } catch (err) {
-    errorHandler(
-      res,
-      401,
-      `Error on check token, request failed, discordServerId: ${discordServerId}`,
-      "Error on check token",
-      err
-    );
-    return;
-  }
-
   if (!discordServer) {
     errorHandler(
       res,
@@ -53,6 +39,8 @@ async function checkToken(req, res, next) {
     );
     return;
   }
+
+  const discordUser = await listOneDiscordUserReq(authorization, res);
 
   const discordUserMember = discordServer.members.find(
     (member) => member.discordUserId === discordUser.data.id
