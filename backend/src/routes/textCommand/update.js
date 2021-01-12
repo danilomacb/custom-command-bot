@@ -6,7 +6,7 @@ async function update(req, res) {
   const { textCommandIdToUpdate } = req.params;
   const { tag, message } = req.body;
   const { discordUserUsername, discordUserDiscriminator, discordUserId } = memberLogged;
-  const { discordServerName, discordServerId } = discordServer;
+  const { discordServerName, discordServerId, textCommands } = discordServer;
 
   if (!tag || !message) {
     errorHandler(
@@ -38,7 +38,18 @@ async function update(req, res) {
     return;
   }
 
-  const textCommandToUpdate = discordServer.textCommands.find(
+  registeredTag = textCommands.find((textCommand) => textCommand.tag === tag);
+  if (registeredTag) {
+    errorHandler(
+      res,
+      409,
+      `Error on update text, this command already exists, tag: ${tag}, message: ${message}, textCommandIdToUpdate: ${textCommandIdToUpdate}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+      "This command already exists"
+    );
+    return;
+  }
+
+  const textCommandToUpdate = textCommands.find(
     (textCommand) => textCommand.id === textCommandIdToUpdate
   );
 
