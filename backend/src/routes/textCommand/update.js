@@ -80,13 +80,6 @@ async function update(req, res) {
 
   try {
     await discordServer.save();
-
-    successHandler(
-      res,
-      200,
-      `Text command updated, tag: ${tag}, message: ${message}, textCommandIdToUpdate: ${textCommandIdToUpdate}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
-      "Text command updated"
-    );
   } catch (err) {
     errorHandler(
       res,
@@ -95,7 +88,15 @@ async function update(req, res) {
       "Error on update",
       err
     );
+    return;
   }
+
+  successHandler(
+    res,
+    200,
+    `Text command updated, tag: ${tag}, message: ${message}, textCommandIdToUpdate: ${textCommandIdToUpdate}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+    "Text command updated"
+  );
 }
 
 module.exports = update;

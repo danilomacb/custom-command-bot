@@ -33,13 +33,6 @@ async function remove(req, res) {
 
   try {
     await discordServer.save();
-
-    successHandler(
-      res,
-      200,
-      `Text command removed, textCommandId: ${textCommandId}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId, ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
-      "Text command removed"
-    );
   } catch (err) {
     errorHandler(
       res,
@@ -48,7 +41,15 @@ async function remove(req, res) {
       "Error on remove text command",
       err
     );
+    return;
   }
+
+  successHandler(
+    res,
+    200,
+    `Text command removed, textCommandId: ${textCommandId}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId, ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+    "Text command removed"
+  );
 }
 
 module.exports = remove;

@@ -42,7 +42,6 @@ async function remove(req, res) {
     `Discord server removed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
     "Discord server removed"
   );
-  return;
 }
 
 module.exports = remove;

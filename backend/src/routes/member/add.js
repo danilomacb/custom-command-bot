@@ -18,6 +18,7 @@ async function add(req, res) {
       "Error on add member",
       err
     );
+    return;
   }
 
   discordServer.members.push(member);
@@ -26,13 +27,6 @@ async function add(req, res) {
 
   try {
     await discordServer.save();
-
-    successHandler(
-      res,
-      201,
-      `Member added, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
-      "Member added"
-    );
   } catch (err) {
     errorHandler(
       res,
@@ -41,7 +35,15 @@ async function add(req, res) {
       "Error on add member",
       err
     );
+    return;
   }
+
+  successHandler(
+    res,
+    201,
+    `Member added, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+    "Member added"
+  );
 }
 
 module.exports = add;

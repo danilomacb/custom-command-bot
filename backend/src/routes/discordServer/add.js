@@ -11,16 +11,6 @@ async function add(req, res) {
 
   try {
     await newDiscordServer.save();
-
-    successHandler(
-      res,
-      201,
-      `Discord server added, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
-        members
-      )}`,
-      "Discord server added"
-    );
-    return;
   } catch (err) {
     errorHandler(
       res,
@@ -33,6 +23,15 @@ async function add(req, res) {
     );
     return;
   }
+
+  successHandler(
+    res,
+    201,
+    `Discord server added, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, members: ${JSON.stringify(
+      members
+    )}`,
+    "Discord server added"
+  );
 }
 
 module.exports = add;

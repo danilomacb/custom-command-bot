@@ -50,13 +50,6 @@ async function update(req, res) {
 
   try {
     await discordServer.save();
-
-    successHandler(
-      res,
-      200,
-      `Member updated, discordUserIdToUpdate: ${discordUserIdToUpdate}, role: ${role}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
-      "Member updated"
-    );
   } catch (err) {
     errorHandler(
       res,
@@ -65,7 +58,15 @@ async function update(req, res) {
       "Error on update member",
       err
     );
+    return;
   }
+
+  successHandler(
+    res,
+    200,
+    `Member updated, discordUserIdToUpdate: ${discordUserIdToUpdate}, role: ${role}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+    "Member updated"
+  );
 }
 
 module.exports = update;

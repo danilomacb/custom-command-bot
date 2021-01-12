@@ -16,6 +16,7 @@ async function remove(req, res) {
       "Error on remove member",
       err
     );
+    return;
   }
 
   discordServer.members = discordServer.members.filter(
@@ -26,13 +27,6 @@ async function remove(req, res) {
 
   try {
     await discordServer.save();
-
-    successHandler(
-      res,
-      200,
-      `Member removed, discordServerId: ${discordServerId}, discordServerName: ${discordServerName}, discordUserId: ${discordUserId}`,
-      "Member removed"
-    );
   } catch (err) {
     errorHandler(
       res,
@@ -41,7 +35,15 @@ async function remove(req, res) {
       "Error on remove member",
       err
     );
+    return;
   }
+
+  successHandler(
+    res,
+    200,
+    `Member removed, discordServerId: ${discordServerId}, discordServerName: ${discordServerName}, discordUserId: ${discordUserId}`,
+    "Member removed"
+  );
 }
 
 module.exports = remove;

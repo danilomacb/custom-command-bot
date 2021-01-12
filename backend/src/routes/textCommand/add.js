@@ -62,14 +62,6 @@ async function add(req, res) {
 
   try {
     await discordServer.save();
-
-    successHandler(
-      res,
-      201,
-      `Text command added, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
-      "Text command added"
-    );
-    return;
   } catch (err) {
     errorHandler(
       res,
@@ -80,6 +72,13 @@ async function add(req, res) {
     );
     return;
   }
+
+  successHandler(
+    res,
+    201,
+    `Text command added, tag: ${tag}, message: ${message}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}`,
+    "Text command added"
+  );
 }
 
 module.exports = add;

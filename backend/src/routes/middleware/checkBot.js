@@ -19,6 +19,7 @@ async function checkBot(req, res, next) {
       "Error on check bot",
       err
     );
+    return;
   }
 
   if (bot.data.id !== process.env.BOT_ID) {
