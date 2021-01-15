@@ -6,16 +6,6 @@ async function checkToken(req, res, next) {
   const { authorization } = req.headers;
   const { discordServerId } = req.params;
 
-  if (!authorization) {
-    errorHandler(
-      res,
-      401,
-      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServer.discordServerId}`,
-      "Permission denied"
-    );
-    return;
-  }
-
   let discordServer;
   try {
     discordServer = await DiscordServer.findOne({ discordServerId });
@@ -26,6 +16,16 @@ async function checkToken(req, res, next) {
       `Error on check token, find failed, discordServerId: ${discordServerId}`,
       "Error on check token",
       err
+    );
+    return;
+  }
+
+  if (!authorization) {
+    errorHandler(
+      res,
+      401,
+      `Permission denied, user offline, discordServerName: ${discordServer.discordServerName}, discordServerId: ${discordServerId}`,
+      "Permission denied"
     );
     return;
   }

@@ -1,16 +1,30 @@
+const DiscordServer = require("../../models/DiscordServer");
 const successHandler = require("../../handlers/successHandler");
+const errorHandler = require("../../handlers/errorHandler");
 
 async function listAll(req, res) {
-  const { discordServer, memberLogged } = res.locals;
-  const { discordServerName, discordServerId, textCommands } = discordServer;
-  const { discordUserUsername, discordUserDiscriminator, discordUserId } = memberLogged;
+  const { discordServerId } = req.params;
+
+  let discordServer;
+  try {
+    discordServer = await DiscordServer.findOne({ discordServerId });
+  } catch (err) {
+    errorHandler(
+      res,
+      500,
+      `Error on check token, find failed, discordServerId: ${discordServerId}`,
+      "Error on check token",
+      err
+    );
+    return;
+  }
 
   successHandler(
     res,
     200,
-    `All text commands listed, discordServerName: ${discordServerName}, discordServerId: ${discordServerId}, discordUserUsername: ${discordUserUsername}, discordUserDiscriminator: ${discordUserDiscriminator}, discordUserId: ${discordUserId}`,
+    `All text commands listed, discordServerId: ${discordServerId}`,
     "All text commands listed",
-    { textCommands }
+    { textCommands: discordServer.textCommands }
   );
 }
 

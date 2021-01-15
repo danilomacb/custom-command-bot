@@ -9,7 +9,7 @@ const remove = require("./remove");
 const router = express.Router();
 
 router.post("/:discordServerId/add", checkToken, add);
-router.get("/:discordServerId/list-all", checkToken, listAll);
+router.get("/:discordServerId/list-all", listAll);
 router.put("/:discordServerId/update/:textCommandIdToUpdate", checkToken, update);
 router.delete("/:discordServerId/remove/:textCommandId", checkToken, remove);
 
