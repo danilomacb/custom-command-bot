@@ -50,6 +50,9 @@ function TextCommandForm({ discordServerId }) {
 
     const res = await listAllTextCommands(discordServerId);
     setTextCommandList(res);
+
+    setTagChars(0);
+    setMessageChars(0);
   }
 
   return (
